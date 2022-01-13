@@ -5,3 +5,11 @@
 @import url(../blocks/header/header.css);
 @import url(../blocks/header/__logo/header__logo.css);
 @import url(../blocks/header/__line/header__line.css);
+@import url(../blocks/content/content.css);
+@import url(../blocks/photo-grid/photo-grid.css);
+@import url(../blocks/photo-card/photo-card.css);
+@import url(../blocks/photo-card/__img/photo-card__img.css);
+@import url(../blocks/photo-card/__name/photo-card__name.css);
+@import url(../blocks/photo-card/__caption/photo-card__caption.css);
+@import url(../blocks/photo-card/__like/photo-card__like.css);
+

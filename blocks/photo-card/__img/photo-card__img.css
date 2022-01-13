@@ -1,0 +1,6 @@
+.photo-card__img {
+    width: 282px;
+    height: 282px;
+    object-fit: cover;
+    display: block; /* чтобы удалить расстояние по умолчанию под изображ*/
+}
