@@ -12,4 +12,10 @@
 @import url(../blocks/photo-card/__name/photo-card__name.css);
 @import url(../blocks/photo-card/__caption/photo-card__caption.css);
 @import url(../blocks/photo-card/__like/photo-card__like.css);
-
+@import url(../blocks/profile/profile.css);
+@import url(../blocks/profile-info/profile-info.css);
+@import url(../blocks/profile-info/__avatar/profile-info__avatar.css);
+@import url(../blocks/profile-info/__name/profile-info__name.css);
+@import url(../blocks/profile-info/__def/profile-info__def.css);
+@import url(../blocks/profile-info/__text/profile-info__text.css);
+@import url(../blocks/add-button/add-button.css);

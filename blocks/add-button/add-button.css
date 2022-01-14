@@ -1,0 +1,9 @@
+.add-button {
+    width: 150px;
+    height: 50px;
+    border: 2px solid #ffffff;
+    background-image: url(../../images/cross.svg);
+    background-repeat: no-repeat;
+    background-size: 22px 22px;
+    background-position: center;
+}
