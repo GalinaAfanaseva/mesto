@@ -1,12 +1,19 @@
 .profile-info__def {
     font-size: 18px;
-    line-height: 21.78px;
+    line-height: 1.21;
     font-weight: 400;
     font-style: normal;
     color: #FFFFFF;
     margin: 0;
     max-width: 500px;
+    text-align: center;
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
 }
+
+@media screen and (max-width: 600px) {
+    .profile-info__def {
+        font-size: 14px;
+    }
+  }

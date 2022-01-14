@@ -1,9 +1,9 @@
 .header {
-    padding: 45px 200px 0;
+    padding-top: 45px;
 }
 
-/*@media screen and (max-width: 700px) {
+@media screen and (max-width: 600px) {
     .header {
-        padding: 45px 200px 0;
+        padding-top: 28px;
     }
 }

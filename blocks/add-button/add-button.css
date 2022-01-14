@@ -2,8 +2,15 @@
     width: 150px;
     height: 50px;
     border: 2px solid #ffffff;
+    box-sizing: border-box;
     background-image: url(../../images/cross.svg);
     background-repeat: no-repeat;
     background-size: 22px 22px;
     background-position: center;
+}
+
+@media screen and (max-width: 800px) {
+    .add-button {
+        width: 282px;
+    }
 }

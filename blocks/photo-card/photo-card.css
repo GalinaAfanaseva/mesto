@@ -1,7 +1,7 @@
 .photo-card {
     display: flex;
     flex-direction: column;
-    max-width: 282px;
+    width: 100%;
     height: 361px;
     border-radius: 10px;
     background-color: #FFFFFF;

@@ -3,6 +3,13 @@
     justify-content: space-between;
     width: 100%;
     align-items: center;
-    padding-top: 36.25px;
-    padding-bottom: 47.25px;
+    padding-top: 40px;
+    padding-bottom: 51px;
+}
+
+@media screen and (max-width: 800px) {
+    .profile {
+        flex-direction: column;
+        padding-bottom: 36px;
+    }
 }
