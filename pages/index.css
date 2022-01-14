@@ -19,3 +19,5 @@
 @import url(../blocks/profile-info/__def/profile-info__def.css);
 @import url(../blocks/profile-info/__text/profile-info__text.css);
 @import url(../blocks/add-button/add-button.css);
+@import url(../blocks/footer/footer.css);
+@import url(../blocks/footer/__copyright/footer__copyright.css);
