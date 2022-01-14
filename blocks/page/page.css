@@ -5,7 +5,7 @@
     padding-right: 200px;
   }
   
-  @media screen and (max-width: 1024px) {
+  @media screen and (max-width: 1080px) {
     .page {
       padding-left: 72px;
       padding-right: 72px;
