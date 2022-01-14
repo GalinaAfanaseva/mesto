@@ -14,19 +14,25 @@
       <hr class="header__line">
     </header>
     <main class="content">
+      <!-- Профиль-->
       <section class="profile">
         <div class="profile-info">
           <img src="./images/cousteau.jpg" alt="Портрет Жан Ив Кусто в красной шапке" class="profile-info__avatar">
           <div class="profile-info__text">
             <div class="profile-info__edit">
               <h1 class="profile-info__name">Жак-Ив Кусто</h1>
-              <div class="edit-button"></div>
+              <button class="edit-button">
+                <img src="./images/edit.svg" alt="Редактировать" width="100%">
+              </button>
             </div>
             <h3 class="profile-info__def">Исследователь океана</h3>
           </div>
         </div>
-        <div class="add-button"></div>
+        <button class="add-button">
+          <img src="./images/cross.svg" class="add-button__img" alt="Добавить">
+        </button>
       </section>
+      <!-- Грид с картинками -->
       <section class="photo-grid">
         <div class="photo-card">
           <img src="./images/karachayevsk.jpg" alt="Вид на древний храм, окруженный зелеными холмами, в Карачаево-Черкесии" class="photo-card__img">
@@ -71,7 +77,26 @@
           </div>
         </div>
       </section>
+      <!-- Всплывающее окно редактирования -->
+      <div class="popup">
+        <div class="popup__container">
+          <form class="edit-form">
+            <h2 class="edit-form__title">Редактировать профиль</h2>
+            <fieldset class="edit-form__items">
+              <input type="text" class="edit_form__text edit_form__name" placeholder="Имя Фамилия" required>
+              <div class="edit-form__line"></div>
+              <input type="text" class="edit_form__text edit_form__def" placeholder="Описание" required>
+              <div class="edit-form__line"></div>
+              <input type="submit" class="edit_form__submit" value="Сохранить">
+            </fieldset>
+          </form>
+          <button class="popup__close">
+            <img src="./images/close_icon.svg" alt="Закрыть">
+          </button>
+        </div>
+      </div>
     </main>
+    <!-- Подвал страницы-->
     <footer class="footer">
       <p class="footer__copyright" lang="en">&copy; 2022 Mesto Russia</p>
     </footer>

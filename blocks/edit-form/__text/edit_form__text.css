@@ -1,0 +1,13 @@
+.edit_form__text {
+    font-size: 14px;
+    line-height: 1.21;
+    font-weight: 400;
+    font-style: normal;
+    color: black;
+    border: none;
+    margin-top: 30px;
+    padding: 0;
+    padding-left: 4px;
+    height: 27px;
+    width: 100%;
+}

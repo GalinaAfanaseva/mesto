@@ -1,8 +1,9 @@
 .edit-button {
     width: 24px;
     height: 24px;
-    background-image: url(../../images/edit.svg);
-    background-size: cover;
+    background: none;
+    border: none;
+    padding: 0;
 }
 
 @media screen and (max-width: 600px) {

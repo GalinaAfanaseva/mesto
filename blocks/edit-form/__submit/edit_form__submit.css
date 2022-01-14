@@ -1,0 +1,23 @@
+.edit_form__submit {
+    width: 100%;
+    height: 50px;
+    background-color: black;
+    font-size: 18px;
+    line-height: 1.21;
+    font-weight: 400;
+    font-style: normal;
+    color: #FFFFFF;
+    border: none;
+    margin-top: 48px;
+}
+
+@media screen and (max-width: 600px) {
+    .edit_form__submit  {
+        font-size: 14px;
+    }
+}
+
+.edit_form__submit:hover{
+    opacity: 0.8;
+    transition: 0.2s;
+}
