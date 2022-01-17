@@ -23,6 +23,7 @@
 @import url(../blocks/footer/footer.css);
 @import url(../blocks/footer/__copyright/footer__copyright.css);
 @import url(../blocks/edit-button/edit-button.css);
+@import url(../blocks/edit-button/__img/edit-button__img.css);
 @import url(../blocks/like-button/like-button.css);
 @import url(../blocks/like-button/_active/like-button_active.css);
 @import url(../blocks/popup/popup.css);
@@ -35,3 +36,4 @@
 @import url(../blocks/popup/__close/popup__close.css);
 @import url(../blocks/popup/__container/popup__container.css);
 @import url(../blocks/popup/_opened/popup_opened.css);
+@import url(../blocks/popup/__close-img/popup__close-img.css);
