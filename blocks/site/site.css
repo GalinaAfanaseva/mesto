@@ -6,6 +6,7 @@
     -ms-text-size-adjust: 100%;
     -moz-text-size-adjust: 100%;
     font-family: 'Inter', Arial, sans-serif;
+    position: relative;
 }
 
 /*overflow: hidden;*/
