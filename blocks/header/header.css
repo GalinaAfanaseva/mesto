@@ -1,9 +1,22 @@
 .header {
     padding-top: 45px;
+    border-bottom: 1px solid #545454;
+    opacity: 0.7;
+    width: 100%;
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 650px) {
     .header {
         padding-top: 28px;
+    }
+}
+
+@media screen and (max-width: 320px) {
+    .header {
+        position: absolute;
+        left: 0px;
+        top: 0px;
+        z-index: 1;
+        width: 320px;
     }
 }

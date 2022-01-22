@@ -1,0 +1,23 @@
+.photo-grid__add-button {
+    width: 150px;
+    height: 50px;
+    border: 2px solid #ffffff;
+    background-image: url(../../../images/cross.svg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: transparent;
+    background-size: 22px 22px;
+    padding: 0;
+}
+
+@media screen and (max-width: 1024px) {
+    .photo-grid__add-button {
+        width: 282px;
+        background-size: 16px 16px;
+    }
+}
+
+.photo-grid__add-button:hover {
+    opacity: 0.6;
+    transition: 0.2s;
+}

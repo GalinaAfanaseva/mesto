@@ -1,11 +1,12 @@
 .profile-info__edit {
-    display: flex;
     margin-bottom: 16px;
+    display: flex;
     justify-content: space-between;
     align-items: baseline;
+    width: auto;
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 650px) {
     .profile-info__edit {
         margin-bottom: 14px;
     }

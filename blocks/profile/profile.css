@@ -7,14 +7,14 @@
     padding-bottom: 51px;
 }
 
-@media screen and (max-width: 880px) {
+@media screen and (max-width: 1024px) {
     .profile {
         flex-direction: column;
         padding-bottom: 36px;
     }
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 650px) {
     .profile {
         padding-top: 42px;
     }

@@ -11,87 +11,85 @@
     <!-- Шапка страницы-->
     <header class="header">
       <a href="#"><img src="./images/header-logo.svg" alt="Логотип" class="header__logo"></a>
-      <hr class="header__line">
     </header>
     <main class="content">
       <!-- Профиль-->
       <section class="profile">
         <div class="profile-info">
-          <img src="./images/cousteau.jpg" alt="Портрет Жан Ив Кусто в красной шапке" class="profile-info__avatar">
+          <img src="./images/cousteau.jpg" alt="Портрет Жак Ив Кусто в красной шапке" class="profile-info__avatar">
           <div class="profile-info__text">
             <div class="profile-info__edit">
-              <h1 class="profile-info__name">Жак-Ив Кусто</h1>
-              <button class="edit-button">
-                <img class="edit-button__img" src="./images/edit.svg" alt="Редактировать">
+              <h1 class="profile-info__name">Жак Ив Кусто </h1>
+              <button class="profile-info__edit-button" type="submit">
               </button>
             </div>
-            <p class="profile-info__def">Исследователь океана</p>
+            <p class="profile-info__def">Исследователь океана Исследователь океана Исследователь океана Исследователь океана</p>
           </div>
         </div>
-        <button class="add-button">
-          <img src="./images/cross.svg" class="add-button__img" alt="Добавить">
+        <button class="photo-grid__add-button" type="submit">
         </button>
       </section>
       <!-- Грид с картинками -->
-      <section class="photo-grid">
-        <div class="photo-card">
+      <section>
+        <ul class="photo-grid">
+        <li class="photo-card">
           <img src="./images/karachayevsk.jpg" alt="Вид на древний храм, окруженный зелеными холмами, в Карачаево-Черкесии" class="photo-card__img">
           <div class="photo-card__caption">
             <h2 class="photo-card__name">Карачаево-Черкессия</h2>
-            <div class="like-button"></div>
+            <div class="photo-card__like-button"></div>
           </div>
-        </div>
-        <div class="photo-card">
+        </li>
+        <li class="photo-card">
           <img src="./images/mountelbrus.jpg" alt="Вид на гору Эльбрус с красивым рассветным небом" class="photo-card__img">
           <div class="photo-card__caption">
             <h2 class="photo-card__name">Гора Эльбрус</h2>
-            <div class="like-button"></div>
+            <div class="photo-card__like-button"></div>
           </div>
-        </div>
-        <div class="photo-card">
+        </li>
+        <li class="photo-card">
           <img src="./images/dombay.jpg" alt="Вид на Кавказские горы с Домбайской долины в осеннее время года" class="photo-card__img">
           <div class="photo-card__caption">
             <h2 class="photo-card__name">Домбай</h2>
-            <div class="like-button"></div>
+            <div class="photo-card__like-button"></div>
           </div>
-        </div>
-        <div class="photo-card">
+        </li>
+        <li class="photo-card">
           <img src="./images/Onega.jpg" alt="Вид на озеро Онега с каменистого берега" class="photo-card__img">
           <div class="photo-card__caption">
             <h2 class="photo-card__name">Озеро Онега</h2>
-            <div class="like-button"></div>
+            <div class="photo-card__like-button"></div>
           </div>
-        </div>
-        <div class="photo-card">
+        </li>
+        <li class="photo-card">
           <img src="./images/olhon.jpg" alt="Вид на летний Байкал с острова Ольхон" class="photo-card__img">
           <div class="photo-card__caption">
             <h2 class="photo-card__name">Остров Ольхон</h2>
-            <div class="like-button"></div>
+            <div class="photo-card__like-button"></div>
           </div>
-        </div>
-        <div class="photo-card">
+        </li>
+        <li class="photo-card">
           <img src="./images/sudak.jpg" alt="Вид на город Судак с генуэзской крепости" class="photo-card__img">
           <div class="photo-card__caption">
             <h2 class="photo-card__name">Судак</h2>
-            <div class="like-button"></div>
+            <div class="photo-card__like-button"></div>
           </div>
-        </div>
+        </li>
+      </ul>
       </section>
       <!-- Всплывающее окно редактирования -->
       <div class="popup">
         <div class="popup__container">
-          <form class="edit-form">
+          <div class="edit-form">
             <h2 class="edit-form__title">Редактировать профиль</h2>
-            <fieldset class="edit-form__items">
-              <input type="text" class="edit-form__text edit-form__text_type_name" placeholder="Имя" required>
-              <div class="edit-form__line"></div>
-              <input type="text" class="edit-form__text edit-form__text_type_def" placeholder="О себе" required>
-              <div class="edit-form__line"></div>
-              <input type="submit" class="edit-form__submit" value="Сохранить">
-            </fieldset>
-          </form>
-          <button class="popup__close">
-            <img class="popup__close-img" src="./images/close_icon.svg" alt="Закрыть">
+            <form>
+              <fieldset class="edit-form__items">
+                <input type="text" class="edit-form__text edit-form__text_type_name" placeholder="Имя" required>
+                <input type="text" class="edit-form__text edit-form__text_type_def" placeholder="О себе" required>
+                <input type="submit" class="edit-form__submit" value="Сохранить">
+              </fieldset>
+            </form>
+          </div>
+          <button class="popup__close" type="button">
           </button>
         </div>
       </div>

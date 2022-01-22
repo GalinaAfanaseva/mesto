@@ -1,12 +1,12 @@
 let popup = document.querySelector('.popup');
-let changeProfileButton = document.querySelector('.edit-button');
+let changeProfileButton = document.querySelector('.profile-info__edit-button');
 let closePopupButton = popup.querySelector('.popup__close');
 let profileOldName = document.querySelector('.profile-info__name');
 let profileOldDef = document.querySelector('.profile-info__def');
 let formElement = document.querySelector('.edit-form');
 let profileNewName = formElement.querySelector('.edit-form__text_type_name');
 let profileNewDef = formElement.querySelector('.edit-form__text_type_def');
-let likeButton = document.querySelectorAll('.like-button');
+let likeButton = document.querySelectorAll('.photo-card__like-button');
 
 changeProfileButton.addEventListener('click', openPopup);
 closePopupButton.addEventListener('click', closePopup);
@@ -33,12 +33,12 @@ function savePopup(event) {
 
 for (let i = 0; i < likeButton.length; i++) {
     likeButton[i].addEventListener('click', function(event){
-        if (likeButton[i].classList.contains('like-button_active')) {
+        if (likeButton[i].classList.contains('photo-card__like-button_active')) {
             event.preventDefault();
-            likeButton[i].classList.remove('like-button_active');
+            likeButton[i].classList.remove('photo-card__like-button_active');
         } else {
             event.preventDefault();
-            likeButton[i].classList.add('like-button_active');
+            likeButton[i].classList.add('photo-card__like-button_active');
         }
     });
 }

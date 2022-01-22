@@ -8,16 +8,10 @@
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
-    max-width: 478px;
+    width: 100%;
 }
 
-@media screen and (max-width: 1280px) {
-    .profile-info__name {
-        max-width: 378px;
-    }
-  }
-
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 650px) {
     .profile-info__name {
         font-size: 27px;
         line-height: 1.21;
@@ -25,8 +19,3 @@
     }
   }
 
-  @media screen and (max-width: 480px) {
-    .profile-info__name {
-        max-width: 254px;
-    }
-  }

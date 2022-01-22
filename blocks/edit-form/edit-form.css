@@ -9,7 +9,7 @@
     justify-content: space-between;
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 650px) {
     .edit-form {
         width: 238px;
         min-height: 272px;

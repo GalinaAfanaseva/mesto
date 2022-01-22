@@ -5,10 +5,17 @@
     height: 33px;
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 650px) {
     .header__logo {
         margin-bottom: 31.6px;
         width: 103.74px;
         height: 24.4px;
+    }
+  }
+
+
+  @media screen and (max-width: 320px) {
+    .header__logo {
+        margin-left: 27px;
     }
   }
