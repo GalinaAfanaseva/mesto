@@ -10,7 +10,7 @@
   <div class="page">
     <!-- Шапка страницы-->
     <header class="header">
-      <div class="header__logo"></div>
+      <a href="#"><img src="./images/header-logo.svg" alt="Логотип" class="header__logo"></a>
       <hr class="header__line">
     </header>
     <main class="content">
@@ -25,7 +25,7 @@
                 <img class="edit-button__img" src="./images/edit.svg" alt="Редактировать">
               </button>
             </div>
-            <h3 class="profile-info__def">Исследователь океана</h3>
+            <p class="profile-info__def">Исследователь океана</p>
           </div>
         </div>
         <button class="add-button">
@@ -83,9 +83,9 @@
           <form class="edit-form">
             <h2 class="edit-form__title">Редактировать профиль</h2>
             <fieldset class="edit-form__items">
-              <input type="text" class="edit-form__text edit-form__name" placeholder="Имя" required>
+              <input type="text" class="edit-form__text edit-form__text_type_name" placeholder="Имя" required>
               <div class="edit-form__line"></div>
-              <input type="text" class="edit-form__text edit-form__def" placeholder="О себе" required>
+              <input type="text" class="edit-form__text edit-form__text_type_def" placeholder="О себе" required>
               <div class="edit-form__line"></div>
               <input type="submit" class="edit-form__submit" value="Сохранить">
             </fieldset>

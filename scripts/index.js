@@ -4,8 +4,8 @@ let closePopupButton = popup.querySelector('.popup__close');
 let profileOldName = document.querySelector('.profile-info__name');
 let profileOldDef = document.querySelector('.profile-info__def');
 let formElement = document.querySelector('.edit-form');
-let profileNewName = formElement.querySelector('.edit_form__name');
-let profileNewDef = formElement.querySelector('.edit_form__def');
+let profileNewName = formElement.querySelector('.edit-form__text_type_name');
+let profileNewDef = formElement.querySelector('.edit-form__text_type_def');
 let likeButton = document.querySelectorAll('.like-button');
 
 changeProfileButton.addEventListener('click', openPopup);

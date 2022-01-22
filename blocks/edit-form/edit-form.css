@@ -1,6 +1,6 @@
 .edit-form {
     width: 358px;
-    height: 259px;
+    min-height: 259px;
     border-radius: 10px;
     background-color: #FFFFFF;
     padding: 34px 36px 37px;
@@ -12,7 +12,7 @@
 @media screen and (max-width: 600px) {
     .edit-form {
         width: 238px;
-        height: 272px;
+        min-height: 272px;
         padding: 25px 22px;
     }
 }
