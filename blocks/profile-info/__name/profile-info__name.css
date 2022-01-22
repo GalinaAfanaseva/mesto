@@ -8,14 +8,21 @@
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
-    width: 100%;
+    max-width: calc(520px - 24px - 18px);
 }
+
+@media screen and (max-width: 1024px) {
+    .profile-info__name {
+      max-width: calc(431px - 24px - 18px);
+    }
+  }
 
 @media screen and (max-width: 650px) {
     .profile-info__name {
         font-size: 27px;
         line-height: 1.21;
         margin: 0 10px 0 0;
+        max-width: calc(282px - 18px - 10px);
     }
   }
 
