@@ -2,6 +2,8 @@
     background-image: url(../../../images/heart_white.svg);
     width: 22px;
     height: 19px;
+    border: none;
+    background-color: transparent;
 }
 
 .photo-card__like-button:hover {
