@@ -9,6 +9,7 @@
     color: #FFFFFF;
     border: none;
     margin-top: 48px;
+    cursor: pointer;
 }
 
 @media screen and (max-width: 650px) {

@@ -8,6 +8,7 @@
     background-color: transparent;
     background-size: 22px 22px;
     padding: 0;
+    cursor: pointer;
 }
 
 @media screen and (max-width: 1024px) {

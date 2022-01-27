@@ -9,6 +9,7 @@
     padding: 0;
     width: 32px;
     height: 32px;
+    cursor: pointer;
 }
 
 @media screen and (max-width: 650px) {

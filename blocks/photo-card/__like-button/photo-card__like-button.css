@@ -4,6 +4,7 @@
     height: 19px;
     border: none;
     background-color: transparent;
+    cursor: pointer;
 }
 
 .photo-card__like-button:hover {
