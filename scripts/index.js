@@ -8,6 +8,58 @@ let profileNewName = formElement.querySelector('.edit-form__text_type_name');
 let profileNewDef = formElement.querySelector('.edit-form__text_type_def');
 let likeButton = document.querySelectorAll('.photo-card__like-button');
 
+const initialCards = [
+    {
+      name: 'Архыз',
+      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
+    },
+    {
+      name: 'Челябинская область',
+      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
+    },
+    {
+      name: 'Иваново',
+      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
+    },
+    {
+      name: 'Камчатка',
+      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
+    },
+    {
+      name: 'Холмогорский район',
+      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
+    },
+    {
+      name: 'Байкал',
+      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
+    }
+  ]; 
+
+const photoGrid = document.querySelector('.photo-grid');
+
+/*
+<template id="card-template">
+    <li class="photo-card">
+      <img class="photo-card__img">
+      <div class="photo-card__caption">
+        <h2 class="photo-card__name"></h2>
+        <button class="photo-card__like-button" type="button"></button>
+      </div>
+    </li>
+</template>*/
+
+for (let i = 0; i < initialCards.length; i++) {
+  const cardTemplate = document.querySelector('#card-template').content.cloneNode(true);
+  cardTemplate.querySelector('h2').textContent = initialCards[i].name;
+  cardTemplate.querySelector('img').src = initialCards[i].link;
+  cardTemplate.querySelector('img').alt = initialCards[i].name;
+  photoGrid.append(cardTemplate);
+}
+
+
+
+
+
 changeProfileButton.addEventListener('click', openPopup);
 closePopupButton.addEventListener('click', closePopup);
 formElement.addEventListener('submit', savePopup);
