@@ -7,6 +7,7 @@ let formElement = document.querySelector('.edit-form__form');
 let profileNewName = formElement.querySelector('.edit-form__text_type_name');
 let profileNewDef = formElement.querySelector('.edit-form__text_type_def');
 let likeButton = document.querySelectorAll('.photo-card__like-button');
+const photoGrid = document.querySelector('.photo-grid');
 
 const initialCards = [
     {
@@ -35,18 +36,7 @@ const initialCards = [
     }
   ]; 
 
-const photoGrid = document.querySelector('.photo-grid');
-
-/*
-<template id="card-template">
-    <li class="photo-card">
-      <img class="photo-card__img">
-      <div class="photo-card__caption">
-        <h2 class="photo-card__name"></h2>
-        <button class="photo-card__like-button" type="button"></button>
-      </div>
-    </li>
-</template>*/
+// ------ Загрузка карточек из массива initialCards на страницу ------
 
 for (let i = 0; i < initialCards.length; i++) {
   const cardTemplate = document.querySelector('#card-template').content.cloneNode(true);
@@ -56,13 +46,7 @@ for (let i = 0; i < initialCards.length; i++) {
   photoGrid.append(cardTemplate);
 }
 
-
-
-
-
-changeProfileButton.addEventListener('click', openPopup);
-closePopupButton.addEventListener('click', closePopup);
-formElement.addEventListener('submit', savePopup);
+// ------ Открытие, сохранение, закрытие попап ------
 
 function openPopup() {
     popup.classList.add('popup_opened');
@@ -83,6 +67,8 @@ function savePopup(event) {
     }
 }
 
+// ------ Ставим лайки ------
+
 for (let i = 0; i < likeButton.length; i++) {
     likeButton[i].addEventListener('click', function(event){
         if (likeButton[i].classList.contains('photo-card__like-button_active')) {
@@ -94,3 +80,9 @@ for (let i = 0; i < likeButton.length; i++) {
         }
     });
 }
+
+// ------ Слушатели ------
+
+changeProfileButton.addEventListener('click', openPopup);
+closePopupButton.addEventListener('click', closePopup);
+formElement.addEventListener('submit', savePopup);
