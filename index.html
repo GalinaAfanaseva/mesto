@@ -35,14 +35,14 @@
         </ul>
       </section>
       <!-- Всплывающее окно редактирования профиля -->
-      <div class="popup">
+      <div class="popup popup_edit_profile">
         <div class="popup__container">
           <div class="edit-form">
             <h2 class="edit-form__title">Редактировать профиль</h2>
-            <form name="edit-name" class="edit-form__form">
+            <form name="edit-name" class="edit-form__profile">
               <fieldset class="edit-form__items">
-                <input type="text" name="name" class="edit-form__text edit-form__text_type_name" placeholder="Имя" required>
-                <input type="text" name="description" class="edit-form__text edit-form__text_type_def" placeholder="О себе" required>
+                <input type="text" name="name" class="edit-form__text edit-form__text_profile_name" placeholder="Имя" required>
+                <input type="text" name="description" class="edit-form__text edit-form__text_profile_def" placeholder="О себе" required>
                 <input type="submit" class="edit-form__submit" value="Сохранить">
               </fieldset>
             </form>
@@ -52,14 +52,14 @@
         </div>
       </div>
       <!-- Всплывающее окно редактирования фотокарточек -->
-      <div class="popup">
-        <div class="popup__container popup__container_intent_card>
+      <div class="popup popup_edit_cards">
+        <div class="popup__container">
           <div class="edit-form">
             <h2 class="edit-form__title">Новое место</h2>
-            form name="edit-name" class="edit-form__form">
+            <form name="add-card" class="edit-form__card">
               <fieldset class="edit-form__items">
-                <input type="text" name="name" class="edit-form__text edit-form__text_type_name" placeholder="Название" required>
-                <input type="text" name="description" class="edit-form__text edit-form__text_type_def" placeholder="Ссылка на картинку" required>
+                <input type="text" name="place" class="edit-form__text edit-form__text_card_name" placeholder="Название" required>
+                <input type="text" name="source" class="edit-form__text edit-form__text_card_src" placeholder="Ссылка на картинку" required>
                 <input type="submit" class="edit-form__submit" value="Сохранить">
               </fieldset>
             </form>
