@@ -12,7 +12,6 @@ let profileNewName = formProfile.querySelector('.edit-form__text_profile_name');
 let profileNewDef = formProfile.querySelector('.edit-form__text_profile_def');
 const newCardName = formCard.querySelector('.edit-form__text_card_name');
 const newCardSource = formCard.querySelector('.edit-form__text_card_src');
-let likeButton = document.querySelectorAll('.photo-card__like-button');
 const photoGrid = document.querySelector('.photo-grid');
 
 const initialCards = [
@@ -42,23 +41,32 @@ const initialCards = [
     }
   ]; 
 
-// ------ Загрузка карточек из массива initialCards на страницу ------
+// ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+// ^^^^^^^^^^^^^^^^ Functions ^^^^^^^^^^^^^^^
+// ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-for (let i = 0; i < initialCards.length; i++) {
+// ------ Добавление новой карточки по шаблону ------
+
+function addCard (item) {
   const cardTemplate = document.querySelector('#card-template').content.cloneNode(true);
-  cardTemplate.querySelector('h2').textContent = initialCards[i].name;
-  cardTemplate.querySelector('img').src = initialCards[i].link;
-  cardTemplate.querySelector('img').alt = initialCards[i].name;
-  photoGrid.append(cardTemplate);
+  cardTemplate.querySelector('h2').textContent = item.name;
+  cardTemplate.querySelector('img').src = item.link;
+  cardTemplate.querySelector('img').alt = item.name;
+  photoGrid.prepend(cardTemplate);
+  // ------ Лайк на карточку ------
+  photoGrid.querySelectorAll('.photo-card__like-button').forEach(item => {
+    item.addEventListener('click', like)}); 
 }
 
-// ------ Открытие/закрытие, сохранение попап ------
+// ------ Добавить/удалить класс popup_opened ------
 
 function togglePopup (element) {
   element.classList.toggle('popup_opened');
 }
 
-function openPopup(element) {
+// ------ Открытие обоих попап форм ------
+
+function openPopup (element) {
   if (element === popupProfile) {
     profileNewName.value = profileOldName.textContent;
     profileNewDef.value = profileOldDef.textContent;
@@ -69,49 +77,50 @@ function openPopup(element) {
     togglePopup(element);
 }
 
-function savePopup(event) {
+// ------ Сохранение новых данных профиля ------
+
+function savePopupProfile (event) {
   event.preventDefault();
   profileOldName.textContent = profileNewName.value;
   profileOldDef.textContent = profileNewDef.value;
   togglePopup(event.target.closest('.popup'));
 } 
 
-function savePopupCard(event) {
+// ------ Сохранение новой карточки ------
+
+function savePopupCard (event) {
   event.preventDefault();
-  const cardTemplate = document.querySelector('#card-template').content.cloneNode(true);
-  cardTemplate.querySelector('h2').textContent = newCardName.value;
-  cardTemplate.querySelector('img').src = newCardSource.value;
-  cardTemplate.querySelector('img').alt = newCardName.value;
-  photoGrid.prepend(cardTemplate);
+  addCard({name: newCardName.value, link: newCardSource.value});
   togglePopup(event.target.closest('.popup'));
 } 
 
 // ------ Ставим лайки ------
 
-for (let i = 0; i < likeButton.length; i++) {
-    likeButton[i].addEventListener('click', function(event){
-        if (likeButton[i].classList.contains('photo-card__like-button_active')) {
-            event.preventDefault();
-            likeButton[i].classList.remove('photo-card__like-button_active');
-        } else {
-            event.preventDefault();
-            likeButton[i].classList.add('photo-card__like-button_active');
-        }
-    });
-}
+function like (event) {
+  event.target.closest('.photo-card__like-button').classList.toggle('photo-card__like-button_active');;
+};
 
-// ------ Слушатели ------
+// ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+// ^^^^^^^^^^^^^^^^ Слушатели ^^^^^^^^^^^^^^^
+// ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+
+// ------ Загрузка карточек из массива initialCards на страницу ------
+
+initialCards.forEach(addCard);
 
 // ------ Изменение данных профиля ------
+
 changeProfileButton.addEventListener('click', () => {
   openPopup(popupProfile);
 });
 closePopupProfileButton.addEventListener('click', () => {
   togglePopup(popupProfile);
 });
-formProfile.addEventListener('submit', savePopup); 
+formProfile.addEventListener('submit', savePopupProfile); 
 
 // ------ Добавление новой карточки ------
+
 addCardButton.addEventListener('click', () => {
   openPopup(popupCards);
 });
@@ -119,3 +128,6 @@ closePopupCardsButton.addEventListener('click', () => {
   togglePopup(popupCards);
 });
 formCard.addEventListener('submit', savePopupCard);
+
+
+
