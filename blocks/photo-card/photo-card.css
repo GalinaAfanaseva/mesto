@@ -1,5 +1,6 @@
 .photo-card {
     display: flex;
+    position: relative;
     flex-direction: column;
     width: 282px;
     min-height: 362px;

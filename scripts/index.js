@@ -56,7 +56,22 @@ function addCard (item) {
   // ------ Лайк на карточку ------
   photoGrid.querySelectorAll('.photo-card__like-button').forEach(item => {
     item.addEventListener('click', like)}); 
+  // ------ Удаление карточки ------
+  photoGrid.querySelectorAll('.photo-card__delete').forEach(item => {
+    item.addEventListener('click', deleteCard)});   
 }
+
+// ------  Удаление карточки ------
+
+function deleteCard (event) {
+  event.target.closest('.photo-card').remove();
+}
+
+// ------ Ставим лайки ------
+
+function like (event) {
+  event.target.closest('.photo-card__like-button').classList.toggle('photo-card__like-button_active');;
+};
 
 // ------ Добавить/удалить класс popup_opened ------
 
@@ -94,14 +109,9 @@ function savePopupCard (event) {
   togglePopup(event.target.closest('.popup'));
 } 
 
-// ------ Ставим лайки ------
-
-function like (event) {
-  event.target.closest('.photo-card__like-button').classList.toggle('photo-card__like-button_active');;
-};
 
 // ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-// ^^^^^^^^^^^^^^^^ Слушатели ^^^^^^^^^^^^^^^
+// ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 // ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 
