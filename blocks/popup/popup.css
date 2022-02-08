@@ -5,7 +5,13 @@
     top: 0;
     left: 0;
     background: rgba(0, 0, 0, 0.5);
-    display: none;
+    display: flex;
+    visibility: hidden;
     justify-content: center;
     align-items: center;
+    opacity: 0;
+    transition: visibility 0.3s, opacity 0.3s ease-in-out;
+    -webkit-transition: all 0.3s ease-in-out;
+	-moz-transition: all 0.3s ease-in-out;
+	-o-transition: all 0.3s ease-in-out;
 }
