@@ -1,15 +1,6 @@
 .popup__container {
     position: relative;
-    width: 510px;
-    min-height: 410px;
     display: flex;
     justify-content: center;
     align-items: center;
-}
-
-@media screen and (max-width: 650px) {
-    .popup__container {
-        width: 282px;
-        min-height: 394px;
-    }
 }

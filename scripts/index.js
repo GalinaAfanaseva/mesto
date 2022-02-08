@@ -1,9 +1,15 @@
-let popupProfile = document.querySelector('.popup_edit_profile');
-let popupCards = document.querySelector('.popup_edit_cards');
+let popupProfile = document.querySelector('.popup_profile');
+let popupCards = document.querySelector('.popup_cards');
+let popupImg = document.querySelector('.popup_img');
+let poppingImage = popupImg.querySelector('.popup__img-big');
+let poppingImageCaption = popupImg.querySelector('.popup__img-caption');
 let changeProfileButton = document.querySelector('.profile-info__edit-button');
 let addCardButton = document.querySelector('.profile__add-button');
+
 let closePopupProfileButton = popupProfile.querySelector('.popup__close');
 let closePopupCardsButton = popupCards.querySelector('.popup__close');
+let closePopupImgButton = popupImg.querySelector('.popup__close');
+
 let profileOldName = document.querySelector('.profile-info__name');
 let profileOldDef = document.querySelector('.profile-info__def');
 let formProfile = document.querySelector('.edit-form__profile');
@@ -58,7 +64,15 @@ function addCard (item) {
     item.addEventListener('click', like)}); 
   // ------ Удаление карточки ------
   photoGrid.querySelectorAll('.photo-card__delete').forEach(item => {
-    item.addEventListener('click', deleteCard)});   
+    item.addEventListener('click', deleteCard)});
+  // ------ Открытие фотографии ------
+  photoGrid.querySelectorAll('.photo-card__img').forEach(item => {
+    item.addEventListener('click', openImg)});  
+}
+
+// ------ Открытие фотографии ------
+function openImg () {
+  openPopup(popupImg);
 }
 
 // ------  Удаление карточки ------
@@ -79,7 +93,7 @@ function togglePopup (element) {
   element.classList.toggle('popup_opened');
 }
 
-// ------ Открытие обоих попап форм ------
+// ------ Открытие попап форм ------
 
 function openPopup (element) {
   if (element === popupProfile) {
@@ -88,6 +102,11 @@ function openPopup (element) {
   } else if (element === popupCards) {
     newCardName.value = null;
     newCardSource.value = null;
+  } else {
+    console.log(event.target);
+    poppingImage.src = event.target.src;
+    poppingImage.alt = event.target.alt;
+    poppingImageCaption.textContent = event.target.alt;
   }
     togglePopup(element);
 }
@@ -139,5 +158,8 @@ closePopupCardsButton.addEventListener('click', () => {
 });
 formCard.addEventListener('submit', savePopupCard);
 
+// ------ Закрытие большого изображения ------
 
-
+closePopupImgButton.addEventListener('click', () => {
+  togglePopup(popupImg);
+}); 

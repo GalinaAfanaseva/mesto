@@ -1,0 +1,6 @@
+.popup__img-big {
+    display: block; /* чтобы удалить расстояние по умолчанию между подписью и изображ*/
+    max-width: 75vw;
+    max-height: 75vh;
+    margin: auto 0;
+}
