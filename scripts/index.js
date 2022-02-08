@@ -1,23 +1,26 @@
-let popupProfile = document.querySelector('.popup_profile');
-let popupCards = document.querySelector('.popup_cards');
-let popupImg = document.querySelector('.popup_img');
-let poppingImage = popupImg.querySelector('.popup__img-big');
-let poppingImageCaption = popupImg.querySelector('.popup__img-caption');
-let changeProfileButton = document.querySelector('.profile-info__edit-button');
-let addCardButton = document.querySelector('.profile__add-button');
 
-let closePopupProfileButton = popupProfile.querySelector('.popup__close');
-let closePopupCardsButton = popupCards.querySelector('.popup__close');
-let closePopupImgButton = popupImg.querySelector('.popup__close');
 
-let profileOldName = document.querySelector('.profile-info__name');
-let profileOldDef = document.querySelector('.profile-info__def');
-let formProfile = document.querySelector('.edit-form__profile');
+const popupProfile = document.querySelector('.popup_profile');
+const changeProfileButton = document.querySelector('.profile-info__edit-button');
+const closePopupProfileButton = popupProfile.querySelector('.popup__close');
+const formProfile = popupProfile.querySelector('.edit-form__profile');
+const profileOldName = document.querySelector('.profile-info__name');
+const profileOldDef = document.querySelector('.profile-info__def');
+const profileNewName = formProfile.querySelector('.edit-form__text_profile_name');
+const profileNewDef = formProfile.querySelector('.edit-form__text_profile_def');
+
+const popupCards = document.querySelector('.popup_cards');
+const addCardButton = document.querySelector('.profile__add-card-button');
+const closePopupCardsButton = popupCards.querySelector('.popup__close');
 const formCard = document.querySelector('.edit-form__card');
-let profileNewName = formProfile.querySelector('.edit-form__text_profile_name');
-let profileNewDef = formProfile.querySelector('.edit-form__text_profile_def');
 const newCardName = formCard.querySelector('.edit-form__text_card_name');
 const newCardSource = formCard.querySelector('.edit-form__text_card_src');
+
+const popupImg = document.querySelector('.popup_img');
+const poppingImage = popupImg.querySelector('.popup__img-big');
+const poppingImageCaption = popupImg.querySelector('.popup__img-caption');
+const closePopupImgButton = popupImg.querySelector('.popup__close');
+
 const photoGrid = document.querySelector('.photo-grid');
 
 const initialCards = [
@@ -71,8 +74,8 @@ function addCard (item) {
 }
 
 // ------ Открытие фотографии ------
-function openImg () {
-  openPopup(popupImg);
+function openImg (event) {
+  openPopupImg(event);
 }
 
 // ------  Удаление карточки ------
@@ -87,28 +90,31 @@ function like (event) {
   event.target.closest('.photo-card__like-button').classList.toggle('photo-card__like-button_active');;
 };
 
+// ------ Открытие попап форм ------
+
+function openPopupProfile () {
+  togglePopup(popupProfile);
+  profileNewName.value = profileOldName.textContent;
+  profileNewDef.value = profileOldDef.textContent;
+}
+
+function openPopupCard () {
+  togglePopup(popupCards);
+  newCardName.value = null;
+  newCardSource.value = null;
+}
+
+function openPopupImg (event) {
+  togglePopup(popupImg);
+  poppingImage.src = event.target.src;
+  poppingImage.alt = event.target.alt;
+  poppingImageCaption.textContent = event.target.alt;
+}
+
 // ------ Добавить/удалить класс popup_opened ------
 
 function togglePopup (element) {
   element.classList.toggle('popup_opened');
-}
-
-// ------ Открытие попап форм ------
-
-function openPopup (element) {
-  if (element === popupProfile) {
-    profileNewName.value = profileOldName.textContent;
-    profileNewDef.value = profileOldDef.textContent;
-  } else if (element === popupCards) {
-    newCardName.value = null;
-    newCardSource.value = null;
-  } else {
-    console.log(event.target);
-    poppingImage.src = event.target.src;
-    poppingImage.alt = event.target.alt;
-    poppingImageCaption.textContent = event.target.alt;
-  }
-    togglePopup(element);
 }
 
 // ------ Сохранение новых данных профиля ------
@@ -140,9 +146,7 @@ initialCards.forEach(addCard);
 
 // ------ Изменение данных профиля ------
 
-changeProfileButton.addEventListener('click', () => {
-  openPopup(popupProfile);
-});
+changeProfileButton.addEventListener('click', openPopupProfile);
 closePopupProfileButton.addEventListener('click', () => {
   togglePopup(popupProfile);
 });
@@ -150,9 +154,7 @@ formProfile.addEventListener('submit', savePopupProfile);
 
 // ------ Добавление новой карточки ------
 
-addCardButton.addEventListener('click', () => {
-  openPopup(popupCards);
-});
+addCardButton.addEventListener('click', openPopupCard);
 closePopupCardsButton.addEventListener('click', () => {
   togglePopup(popupCards);
 });
