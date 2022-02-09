@@ -4,6 +4,7 @@
     height: 19px;
     border: none;
     background-color: transparent;
+    background-repeat: no-repeat;
     cursor: pointer;
 }
 
