@@ -40,7 +40,7 @@ function newCard (item) {
   // ------ Удаление карточки ------
   cardTemplate.querySelector('.photo-card__delete').addEventListener('click', deleteCard);
   // ------ Открытие фотографии ------
-  cardTemplateImage.addEventListener('click', () => openImg(cardTemplateImage));
+  cardTemplateImage.addEventListener('click', () => openImg(cardTemplateImage.src, cardTemplateImage.alt));
   return cardTemplate;
 }
 
@@ -49,8 +49,8 @@ function addCard (item) {
 }
 
 // ------ Открытие фотографии ------
-function openImg (item) {
-  openPopupImg(item);
+function openImg (source, name) {
+  openPopupImg(source, name);
 }
 
 // ------  Удаление карточки ------
@@ -79,11 +79,11 @@ function openPopupCard () {
   newCardSource.value = null;
 }
 
-function openPopupImg (item) {
+function openPopupImg (source, name) {
   openPopup(popupImg);
-  poppingImage.src = item.src;
-  poppingImage.alt = item.alt;
-  poppingImageCaption.textContent = item.alt;
+  poppingImage.src = source;
+  poppingImage.alt = name;
+  poppingImageCaption.textContent = name;
 }
 
 // ------ Добавить/удалить класс popup_opened ------
@@ -102,7 +102,7 @@ function savePopupProfile (event) {
   event.preventDefault();
   profileOldName.textContent = profileNewName.value;
   profileOldDef.textContent = profileNewDef.value;
-  closePopup(event.target.closest('.popup'));
+  closePopup(popupProfile);
 } 
 
 // ------ Сохранение новой карточки ------
@@ -110,7 +110,7 @@ function savePopupProfile (event) {
 function savePopupCard (event) {
   event.preventDefault();
   addCard({name: newCardName.value, link: newCardSource.value});
-  closePopup(event.target.closest('.popup'));
+  closePopup(popupAddCards);
 } 
 
 
