@@ -40,7 +40,7 @@ function newCard (item) {
   // ------ Удаление карточки ------
   cardTemplate.querySelector('.photo-card__delete').addEventListener('click', deleteCard);
   // ------ Открытие фотографии ------
-  cardTemplateImage.addEventListener('click', () => openImg(cardTemplateImage.src, cardTemplateImage.alt));
+  cardTemplateImage.addEventListener('click', () => openImg(item));
   return cardTemplate;
 }
 
@@ -49,8 +49,8 @@ function addCard (item) {
 }
 
 // ------ Открытие фотографии ------
-function openImg (source, name) {
-  openPopupImg(source, name);
+function openImg (item) {
+  openPopupImg(item);
 }
 
 // ------  Удаление карточки ------
@@ -79,11 +79,11 @@ function openPopupCard () {
   newCardSource.value = null;
 }
 
-function openPopupImg (source, name) {
+function openPopupImg (item) {
   openPopup(popupImg);
-  poppingImage.src = source;
-  poppingImage.alt = name;
-  poppingImageCaption.textContent = name;
+  poppingImage.src = item.link;
+  poppingImage.alt = item.name;
+  poppingImageCaption.textContent = item.name;
 }
 
 // ------ Добавить/удалить класс popup_opened ------
