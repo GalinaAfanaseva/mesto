@@ -39,10 +39,12 @@
         <div class="popup__container">
           <div class="edit-form">
             <h2 class="edit-form__title">Редактировать профиль</h2>
-            <form name="edit-name" class="edit-form__profile">
+            <form name="edit-name" class="edit-form__profile" novalidate>
               <fieldset class="edit-form__items">
-                <input type="text" name="name" class="edit-form__text edit-form__text_profile_name" placeholder="Имя" required>
-                <input type="text" name="description" class="edit-form__text edit-form__text_profile_def" placeholder="О себе" required>
+                <input type="text" name="name" id="profile-name" class="edit-form__text edit-form__text_profile_name" placeholder="Имя" required minlength="2" maxlength="40">
+                <span class="edit-form__error-message profile-name-error"></span>
+                <input type="text" name="description" id="profile-def" class="edit-form__text edit-form__text_profile_def" placeholder="О себе" required minlength="2" maxlength="200">
+                <span class="edit-form__error-message profile-def-error"></span>
                 <input type="submit" class="edit-form__submit" value="Сохранить">
               </fieldset>
             </form>
@@ -58,8 +60,8 @@
             <h2 class="edit-form__title">Новое место</h2>
             <form name="add-card" class="edit-form__card">
               <fieldset class="edit-form__items">
-                <input type="text" name="place" class="edit-form__text edit-form__text_card_name" placeholder="Название" required>
-                <input type="text" name="source" class="edit-form__text edit-form__text_card_src" placeholder="Ссылка на картинку" required>
+                <input type="text" name="place" id="card-name" class="edit-form__text edit-form__text_card_name" placeholder="Название" required>
+                <input type="url" name="source" id="card-img" class="edit-form__text edit-form__text_card_src" placeholder="Ссылка на картинку" required>
                 <input type="submit" class="edit-form__submit" value="Сохранить">
               </fieldset>
             </form>

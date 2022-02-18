@@ -1,0 +1,10 @@
+.edit-form__error-message {
+    display: block;
+    font-size: 12px;
+    line-height: 1.21;
+    font-weight: 400;
+    font-style: normal;
+    color: #FF0000;
+    margin-top: 5px;
+    min-height: 30px;
+}

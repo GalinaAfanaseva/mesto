@@ -8,6 +8,7 @@ const profileOldName = document.querySelector('.profile-info__name');
 const profileOldDef = document.querySelector('.profile-info__def');
 const profileNewName = formProfile.querySelector('.edit-form__text_profile_name');
 const profileNewDef = formProfile.querySelector('.edit-form__text_profile_def');
+const buttonSaveProfile = formProfile.querySelector('.edit-form__submit');
 
 const popupAddCards = document.querySelector('.popup_add-cards');
 const buttonAddCardOpen = document.querySelector('.profile__add-card-button');
@@ -113,6 +114,55 @@ function savePopupCard (event) {
   closePopup(popupAddCards);
 } 
 
+// ------ Валидность форм ------
+
+const showInputError = (formElement, inputElement, errorMessage) => {
+  const formError = formElement.querySelector(`.${inputElement.id}-error`);
+  formError.textContent = errorMessage;
+  inputElement.classList.add('edit-form__text_type_error');
+}
+
+const hideInputError = (formElement, inputElement) => {
+  const formError = formElement.querySelector(`.${inputElement.id}-error`);
+  formError.textContent = '';
+  inputElement.classList.remove('edit-form__text_type_error');
+}
+ 
+const checkInputValidity = (formElement, inputElement) => {
+  if (!inputElement.validity.valid) {
+    showInputError(formElement, inputElement, inputElement.validationMessage);
+  } else {
+    hideInputError(formElement, inputElement);
+  }
+}
+
+const hasInvalidInput = (inputList) => {
+  return inputList.some((inputElement) => {
+    return !inputElement.validity.valid;
+  });
+}
+
+const toggleProfileButtonState = (inputList, buttonElement) => {
+  if (hasInvalidInput(inputList)) {
+    buttonElement.classList.add('edit-form__submit_inactive');
+    buttonElement.disabled = true;
+  } else {
+    buttonElement.classList.remove('edit-form__submit_inactive');
+    buttonElement.disabled = false;
+  }
+}
+
+profileNewName.addEventListener('input', () => {
+  const inputList = [profileNewName, profileNewDef];
+  checkInputValidity(formProfile, profileNewName);
+  toggleProfileButtonState(inputList, buttonSaveProfile);
+});
+
+profileNewDef.addEventListener('input', () => {
+  const inputList = [profileNewName, profileNewDef];
+  checkInputValidity(formProfile, profileNewDef);
+  toggleProfileButtonState(inputList, buttonSaveProfile);
+});
 
 // ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 // ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -128,6 +178,10 @@ initialCards.forEach(addCard);
 buttonChangeProfile.addEventListener('click', openPopupProfile);
 buttonClosePopupProfile.addEventListener('click', () => {
   closePopup(popupProfile);
+  hideInputError(formProfile, profileNewName);
+  hideInputError(formProfile, profileNewDef);
+  buttonSaveProfile.classList.remove('edit-form__submit_inactive');
+  buttonSaveProfile.disabled = false;
 });
 formProfile.addEventListener('submit', savePopupProfile); 
 

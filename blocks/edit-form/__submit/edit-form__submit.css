@@ -8,7 +8,7 @@
     font-style: normal;
     color: #FFFFFF;
     border: none;
-    margin-top: 48px;
+    margin-top: 18px;
     cursor: pointer;
 }
 
@@ -21,4 +21,9 @@
 .edit-form__submit:hover{
     opacity: 0.8;
     transition: 0.2s;
+}
+
+.edit-form__submit[disabled]:hover{
+    opacity: .2;
+    cursor: default;
 }
