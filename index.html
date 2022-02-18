@@ -53,15 +53,17 @@
           </button>
         </div>
       </div>
-      <!-- Всплывающее окно редактирования фотокарточек -->
+      <!-- Всплывающее окно добавления фотокарточек -->
       <div class="popup popup_add-cards">
         <div class="popup__container">
           <div class="edit-form">
             <h2 class="edit-form__title">Новое место</h2>
-            <form name="add-card" class="edit-form__card">
+            <form name="add-card" class="edit-form__card" novalidate>
               <fieldset class="edit-form__items">
-                <input type="text" name="place" id="card-name" class="edit-form__text edit-form__text_card_name" placeholder="Название" required>
+                <input type="text" name="place" id="card-name" class="edit-form__text edit-form__text_card_name" placeholder="Название" required minlength="2" maxlength="30">
+                <span class="edit-form__error-message card-name-error"></span>
                 <input type="url" name="source" id="card-img" class="edit-form__text edit-form__text_card_src" placeholder="Ссылка на картинку" required>
+                <span class="edit-form__error-message card-img-error"></span>
                 <input type="submit" class="edit-form__submit" value="Сохранить">
               </fieldset>
             </form>

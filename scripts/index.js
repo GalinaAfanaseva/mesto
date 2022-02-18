@@ -16,6 +16,7 @@ const buttonAddCardClose = popupAddCards.querySelector('.popup__close');
 const formCard = document.querySelector('.edit-form__card');
 const newCardName = formCard.querySelector('.edit-form__text_card_name');
 const newCardSource = formCard.querySelector('.edit-form__text_card_src');
+const buttonSaveCard = formCard.querySelector('.edit-form__submit');
 
 const popupImg = document.querySelector('.popup_img');
 const poppingImage = popupImg.querySelector('.popup__img-big');
@@ -114,7 +115,7 @@ function savePopupCard (event) {
   closePopup(popupAddCards);
 } 
 
-// ------ Валидность форм ------
+// ------ Валидность формы редактирования профиля ------
 
 const showInputError = (formElement, inputElement, errorMessage) => {
   const formError = formElement.querySelector(`.${inputElement.id}-error`);
@@ -164,6 +165,20 @@ profileNewDef.addEventListener('input', () => {
   toggleProfileButtonState(inputList, buttonSaveProfile);
 });
 
+// ------ Валидность формы добавления новой карточки ------
+
+newCardName.addEventListener('input', () => {
+  const inputList = [newCardName, newCardSource];
+  checkInputValidity(formCard, newCardName);
+  toggleProfileButtonState(inputList, buttonSaveCard);
+});
+
+newCardSource.addEventListener('input', () => {
+  const inputList = [newCardName, newCardSource];
+  checkInputValidity(formCard, newCardSource);
+  toggleProfileButtonState(inputList, buttonSaveCard);
+});
+
 // ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 // ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 // ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -175,19 +190,27 @@ initialCards.forEach(addCard);
 
 // ------ Изменение данных профиля ------
 
-buttonChangeProfile.addEventListener('click', openPopupProfile);
-buttonClosePopupProfile.addEventListener('click', () => {
-  closePopup(popupProfile);
+buttonChangeProfile.addEventListener('click', () => {
+  openPopupProfile();
   hideInputError(formProfile, profileNewName);
   hideInputError(formProfile, profileNewDef);
   buttonSaveProfile.classList.remove('edit-form__submit_inactive');
   buttonSaveProfile.disabled = false;
 });
+buttonClosePopupProfile.addEventListener('click', () => {
+  closePopup(popupProfile);
+});
 formProfile.addEventListener('submit', savePopupProfile); 
 
 // ------ Добавление новой карточки ------
 
-buttonAddCardOpen.addEventListener('click', openPopupCard);
+buttonAddCardOpen.addEventListener('click', () => {
+  openPopupCard();
+  hideInputError(formCard, newCardName);
+  hideInputError(formCard, newCardSource);
+  buttonSaveCard.classList.add('edit-form__submit_inactive');
+  buttonSaveCard.disabled = true;
+});
 buttonAddCardClose.addEventListener('click', () => {
   closePopup(popupAddCards);
 });
