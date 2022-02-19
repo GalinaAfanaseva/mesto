@@ -1,5 +1,4 @@
 
-
 const popupProfile = document.querySelector('.popup_profile');
 const buttonChangeProfile = document.querySelector('.profile-info__edit-button');
 const buttonClosePopupProfile = popupProfile.querySelector('.popup__close');
@@ -42,7 +41,14 @@ function newCard (item) {
   // ------ Удаление карточки ------
   cardTemplate.querySelector('.photo-card__delete').addEventListener('click', deleteCard);
   // ------ Открытие фотографии ------
-  cardTemplateImage.addEventListener('click', () => openImg(item));
+  cardTemplateImage.addEventListener('click', () => {
+    openImg(item);
+    document.addEventListener('keyup', (evt) => {
+      if (evt.key === 'Escape') {
+        closePopup(popupImg);
+      }
+    }, { once: true });
+  });
   return cardTemplate;
 }
 
@@ -115,70 +121,6 @@ function savePopupCard (event) {
   closePopup(popupAddCards);
 } 
 
-// ------ Валидность формы редактирования профиля ------
-
-const showInputError = (formElement, inputElement, errorMessage) => {
-  const formError = formElement.querySelector(`.${inputElement.id}-error`);
-  formError.textContent = errorMessage;
-  inputElement.classList.add('edit-form__text_type_error');
-}
-
-const hideInputError = (formElement, inputElement) => {
-  const formError = formElement.querySelector(`.${inputElement.id}-error`);
-  formError.textContent = '';
-  inputElement.classList.remove('edit-form__text_type_error');
-}
- 
-const checkInputValidity = (formElement, inputElement) => {
-  if (!inputElement.validity.valid) {
-    showInputError(formElement, inputElement, inputElement.validationMessage);
-  } else {
-    hideInputError(formElement, inputElement);
-  }
-}
-
-const hasInvalidInput = (inputList) => {
-  return inputList.some((inputElement) => {
-    return !inputElement.validity.valid;
-  });
-}
-
-const toggleProfileButtonState = (inputList, buttonElement) => {
-  if (hasInvalidInput(inputList)) {
-    buttonElement.classList.add('edit-form__submit_inactive');
-    buttonElement.disabled = true;
-  } else {
-    buttonElement.classList.remove('edit-form__submit_inactive');
-    buttonElement.disabled = false;
-  }
-}
-
-profileNewName.addEventListener('input', () => {
-  const inputList = [profileNewName, profileNewDef];
-  checkInputValidity(formProfile, profileNewName);
-  toggleProfileButtonState(inputList, buttonSaveProfile);
-});
-
-profileNewDef.addEventListener('input', () => {
-  const inputList = [profileNewName, profileNewDef];
-  checkInputValidity(formProfile, profileNewDef);
-  toggleProfileButtonState(inputList, buttonSaveProfile);
-});
-
-// ------ Валидность формы добавления новой карточки ------
-
-newCardName.addEventListener('input', () => {
-  const inputList = [newCardName, newCardSource];
-  checkInputValidity(formCard, newCardName);
-  toggleProfileButtonState(inputList, buttonSaveCard);
-});
-
-newCardSource.addEventListener('input', () => {
-  const inputList = [newCardName, newCardSource];
-  checkInputValidity(formCard, newCardSource);
-  toggleProfileButtonState(inputList, buttonSaveCard);
-});
-
 // ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 // ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 // ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -194,8 +136,12 @@ buttonChangeProfile.addEventListener('click', () => {
   openPopupProfile();
   hideInputError(formProfile, profileNewName);
   hideInputError(formProfile, profileNewDef);
-  buttonSaveProfile.classList.remove('edit-form__submit_inactive');
   buttonSaveProfile.disabled = false;
+  document.addEventListener('keyup', (evt) => {
+    if (evt.key === 'Escape') {
+      closePopup(popupProfile);
+    }
+  }, { once: true });
 });
 buttonClosePopupProfile.addEventListener('click', () => {
   closePopup(popupProfile);
@@ -208,8 +154,12 @@ buttonAddCardOpen.addEventListener('click', () => {
   openPopupCard();
   hideInputError(formCard, newCardName);
   hideInputError(formCard, newCardSource);
-  buttonSaveCard.classList.add('edit-form__submit_inactive');
   buttonSaveCard.disabled = true;
+  document.addEventListener('keyup', (evt) => {
+    if (evt.key === 'Escape') {
+      closePopup(popupAddCards);
+    }
+  }, { once: true });
 });
 buttonAddCardClose.addEventListener('click', () => {
   closePopup(popupAddCards);
@@ -221,3 +171,26 @@ formCard.addEventListener('submit', savePopupCard);
 buttonClosePopupImg.addEventListener('click', () => {
   closePopup(popupImg);
 }); 
+
+// ------ Закрытие попапа при клике на серую область ------
+
+popupProfile.addEventListener('click', (evt) => {
+  if (evt.target === evt.currentTarget) {
+    closePopup(popupProfile);
+  }
+});
+
+popupAddCards.addEventListener('click', (evt) => {
+  if (evt.target === evt.currentTarget) {
+    closePopup(popupAddCards);
+  }
+});
+
+popupImg.addEventListener('click', (evt) => {
+  if (evt.target === evt.currentTarget) {
+    closePopup(popupImg);
+  }
+});
+
+
+

@@ -18,12 +18,19 @@
     }
 }
 
-.edit-form__submit:hover{
+.edit-form__submit:hover {
     opacity: 0.8;
     transition: 0.2s;
 }
 
-.edit-form__submit[disabled]:hover{
+.edit-form__submit[disabled]:hover {
     opacity: .2;
     cursor: default;
+}
+
+.edit-form__submit:disabled {
+    border: 1px solid #000000;
+    opacity: .2;
+    background-color: white;
+    color: #000000;
 }
