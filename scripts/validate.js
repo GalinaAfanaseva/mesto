@@ -1,126 +1,58 @@
-// ------ Валидация формы редактирования профиля ------
-
-const showInputError = (formElement, inputElement, errorMessage) => {
+const showInputError = (formElement, inputElement, errorMessage, inputErrorClass) => {
     const formError = formElement.querySelector(`.${inputElement.id}-error`);
     formError.textContent = errorMessage;
-    inputElement.classList.add('fillbox__text_type_error'); //red line
-  }
+    inputElement.classList.add(inputErrorClass); //red line
+}
   
-  const hideInputError = (formElement, inputElement) => {
+const hideInputError = (formElement, inputElement, inputErrorClass) => {
     const formError = formElement.querySelector(`.${inputElement.id}-error`);
     formError.textContent = '';
-    inputElement.classList.remove('fillbox__text_type_error'); //red line
-  }
-   
-  const checkInputValidity = (formElement, inputElement) => {
+    inputElement.classList.remove(inputErrorClass); //red line
+}
+
+const checkInputValidity = (formElement, inputElement, config) => {
     if (!inputElement.validity.valid) {
-      showInputError(formElement, inputElement, inputElement.validationMessage);
+      showInputError(formElement, inputElement, inputElement.validationMessage, config.inputErrorClass);
     } else {
-      hideInputError(formElement, inputElement);
+      hideInputError(formElement, inputElement, config.inputErrorClass);
     }
-  }
+}
   
-  const hasInvalidInput = (inputList) => {
+const hasInvalidInput = (inputList) => {
     return inputList.some((inputElement) => {
       return !inputElement.validity.valid;
     });
-  }
+}
   
-  const toggleProfileButtonState = (inputList, buttonElement) => {
+const toggleProfileButtonState = (inputList, buttonElement) => {
     if (hasInvalidInput(inputList)) {
       buttonElement.disabled = true;
     } else {
       buttonElement.disabled = false;
     }
-  }
-  
-  profileNewName.addEventListener('input', () => {
-    const inputList = [profileNewName, profileNewDef];
-    checkInputValidity(formProfile, profileNewName);
-    toggleProfileButtonState(inputList, buttonSaveProfile);
-  });
-  
-  profileNewDef.addEventListener('input', () => {
-    const inputList = [profileNewName, profileNewDef];
-    checkInputValidity(formProfile, profileNewDef);
-    toggleProfileButtonState(inputList, buttonSaveProfile);
-  });
-  
-  // ------ Валидация формы добавления новой карточки ------
-  
-  newCardName.addEventListener('input', () => {
-    const inputList = [newCardName, newCardSource];
-    checkInputValidity(formCard, newCardName);
-    toggleProfileButtonState(inputList, buttonSaveCard);
-  });
-  
-  newCardSource.addEventListener('input', () => {
-    const inputList = [newCardName, newCardSource];
-    checkInputValidity(formCard, newCardSource);
-    toggleProfileButtonState(inputList, buttonSaveCard);
-  });
-/*
+}
 
-  // ------ Новый код ------
-
-  const setEventListeners = (formElement) => {
-    const inputList = Array.from(formElement.querySelectorAll('.fillbox__text'));
-    const buttonElement = formElement.querySelector('.fillbox__submit');
+const setEventListeners = (formElement, config) => {
+    const inputList = Array.from(formElement.querySelectorAll(config.inputSelector));
+    const buttonElement = formElement.querySelector(config.submitButtonSelector);
     inputList.forEach((inputElement) => {
         inputElement.addEventListener('input', () => {
-            checkInputValidity(formElement, inputElement);
+            checkInputValidity(formElement, inputElement, config);
             toggleProfileButtonState(inputList, buttonElement);
           });
     });
-  }
-
-  const enableValidation = () => {
-      const formList = Array.from(document.querySelectorAll('.fillbox'));
-  }
-
-
-const validConfig = {
-    formSelector: '.fillbox__profile',
-    submitButtonSelector: '.fillbox__submit',
-    inputErrorClass: 'fillbox__text_type_error',
-    errorClass: 'popup__error_visible'
 }
 
-enableValidation(validConfig);
+const enableValidation = (config) => {
+    const formList = Array.from(document.querySelectorAll(config.formSelector));
+        formList.forEach((formElement) => {
+        setEventListeners(formElement, config);
+    });
+}
 
-  /*
-  const enableValidation = ({
-    formSelector,
-    inputSelector,
-    submitButtonSelector,
-    inactiveButtonClass,
-    inputErrorClass,
-    errorClass
-  }) => {
-    if (!inputElement.validity.valid) {
-      const formError = formElement.querySelector(`.${inputElement.id}-error`);
-      formError.textContent = errorMessage;
-      inputElement.classList.add('fillbox__text_type_error');
-    } else {
-      const formError = formElement.querySelector(`.${inputElement.id}-error`);
-      formError.textContent = '';
-      inputElement.classList.remove('fillbox__text_type_error');
-    }
-  }
-  
-  enableValidation({
-    formSelector: '.fillbox__profile',
-    inputSelector: '.fillbox__text_profile_name',
+enableValidation({
+    formSelector: '.fillbox__form',
+    inputSelector: '.fillbox__text',
     submitButtonSelector: '.fillbox__submit',
-    inactiveButtonClass: 'popup__button_disabled',
-    inputErrorClass: 'popup__input_type_error',
-    errorClass: 'popup__error_visible'
-  });
-  
-  const formProfile = popupProfile.querySelector('.fillbox__profile');
-  const profileOldName = document.querySelector('.profile-info__name');
-  const profileOldDef = document.querySelector('.profile-info__def');
-  const profileNewName = formProfile.querySelector('.fillbox__text_profile_name');
-  const profileNewDef = formProfile.querySelector('.fillbox__text_profile_def');
-  const buttonSaveProfile = formProfile.querySelector('.fillbox__submit');
-  */
+    inputErrorClass: 'fillbox__text_type_error'
+});
