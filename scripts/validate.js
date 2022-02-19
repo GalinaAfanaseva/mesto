@@ -3,13 +3,13 @@
 const showInputError = (formElement, inputElement, errorMessage) => {
     const formError = formElement.querySelector(`.${inputElement.id}-error`);
     formError.textContent = errorMessage;
-    inputElement.classList.add('edit-form__text_type_error'); //red line
+    inputElement.classList.add('fillbox__text_type_error'); //red line
   }
   
   const hideInputError = (formElement, inputElement) => {
     const formError = formElement.querySelector(`.${inputElement.id}-error`);
     formError.textContent = '';
-    inputElement.classList.remove('edit-form__text_type_error'); //red line
+    inputElement.classList.remove('fillbox__text_type_error'); //red line
   }
    
   const checkInputValidity = (formElement, inputElement) => {
@@ -64,8 +64,8 @@ const showInputError = (formElement, inputElement, errorMessage) => {
   // ------ Новый код ------
 
   const setEventListeners = (formElement) => {
-    const inputList = Array.from(formElement.querySelectorAll('.edit-form__text'));
-    const buttonElement = formElement.querySelector('.edit-form__submit');
+    const inputList = Array.from(formElement.querySelectorAll('.fillbox__text'));
+    const buttonElement = formElement.querySelector('.fillbox__submit');
     inputList.forEach((inputElement) => {
         inputElement.addEventListener('input', () => {
             checkInputValidity(formElement, inputElement);
@@ -75,14 +75,14 @@ const showInputError = (formElement, inputElement, errorMessage) => {
   }
 
   const enableValidation = () => {
-      const formList = Array.from(document.querySelectorAll('.edit-form'));
+      const formList = Array.from(document.querySelectorAll('.fillbox'));
   }
 
 
 const validConfig = {
-    formSelector: '.edit-form__profile',
-    submitButtonSelector: '.edit-form__submit',
-    inputErrorClass: 'edit-form__text_type_error',
+    formSelector: '.fillbox__profile',
+    submitButtonSelector: '.fillbox__submit',
+    inputErrorClass: 'fillbox__text_type_error',
     errorClass: 'popup__error_visible'
 }
 
@@ -100,27 +100,27 @@ enableValidation(validConfig);
     if (!inputElement.validity.valid) {
       const formError = formElement.querySelector(`.${inputElement.id}-error`);
       formError.textContent = errorMessage;
-      inputElement.classList.add('edit-form__text_type_error');
+      inputElement.classList.add('fillbox__text_type_error');
     } else {
       const formError = formElement.querySelector(`.${inputElement.id}-error`);
       formError.textContent = '';
-      inputElement.classList.remove('edit-form__text_type_error');
+      inputElement.classList.remove('fillbox__text_type_error');
     }
   }
   
   enableValidation({
-    formSelector: '.edit-form__profile',
-    inputSelector: '.edit-form__text_profile_name',
-    submitButtonSelector: '.edit-form__submit',
+    formSelector: '.fillbox__profile',
+    inputSelector: '.fillbox__text_profile_name',
+    submitButtonSelector: '.fillbox__submit',
     inactiveButtonClass: 'popup__button_disabled',
     inputErrorClass: 'popup__input_type_error',
     errorClass: 'popup__error_visible'
   });
   
-  const formProfile = popupProfile.querySelector('.edit-form__profile');
+  const formProfile = popupProfile.querySelector('.fillbox__profile');
   const profileOldName = document.querySelector('.profile-info__name');
   const profileOldDef = document.querySelector('.profile-info__def');
-  const profileNewName = formProfile.querySelector('.edit-form__text_profile_name');
-  const profileNewDef = formProfile.querySelector('.edit-form__text_profile_def');
-  const buttonSaveProfile = formProfile.querySelector('.edit-form__submit');
+  const profileNewName = formProfile.querySelector('.fillbox__text_profile_name');
+  const profileNewDef = formProfile.querySelector('.fillbox__text_profile_def');
+  const buttonSaveProfile = formProfile.querySelector('.fillbox__submit');
   */

@@ -1,4 +1,4 @@
-.edit-form__submit {
+.fillbox__submit {
     width: 100%;
     height: 50px;
     background-color: black;
@@ -13,22 +13,22 @@
 }
 
 @media screen and (max-width: 650px) {
-    .edit-form__submit  {
+    .fillbox__submit  {
         font-size: 14px;
     }
 }
 
-.edit-form__submit:hover {
+.fillbox__submit:hover {
     opacity: 0.8;
     transition: 0.2s;
 }
 
-.edit-form__submit[disabled]:hover {
+.fillbox__submit[disabled]:hover {
     opacity: .2;
     cursor: default;
 }
 
-.edit-form__submit:disabled {
+.fillbox__submit:disabled {
     border: 1px solid #000000;
     opacity: .2;
     background-color: white;

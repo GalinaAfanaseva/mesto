@@ -1,4 +1,4 @@
-.edit-form {
+.fillbox {
     width: 358px;
     min-height: 259px;
     border-radius: 10px;
@@ -10,7 +10,7 @@
 }
 
 @media screen and (max-width: 650px) {
-    .edit-form {
+    .fillbox {
         width: 238px;
         min-height: 272px;
         padding: 25px 22px;
