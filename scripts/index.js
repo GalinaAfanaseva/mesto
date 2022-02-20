@@ -100,6 +100,7 @@ function openPopup (popupForm) {
 function closePopup (popupForm) {
   popupForm.classList.remove('popup_opened');
   document.removeEventListener('keyup', closePopupByEsc);
+  popupForm.removeEventListener('click', closePopupByOverlay);
 }
 
 // ------ SAVE EDITED PROFILE INFO ------
@@ -132,8 +133,7 @@ function closePopupByEsc (evt) {
 
 function closePopupByOverlay (evt) {
   if (evt.target === evt.currentTarget) {
-    const openedPopup = document.querySelector('.popup_opened');
-    closePopup(openedPopup);  
+    closePopup(evt.target);  
   };
 }
 
