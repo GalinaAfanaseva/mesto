@@ -11,6 +11,7 @@ export class Card {
     this._cardElement = document
       .querySelector(this._cardTemplateSelector)
       .content
+      .querySelector('.photo-card')
       .cloneNode(true);
 
     return this._cardElement;
@@ -45,8 +46,9 @@ export class Card {
     this._likeButton.classList.toggle('photo-card__like-button_active');
   };
 
-  _deleteCard() {
-    this.closest('.photo-card').remove();
+  _deleteCard = () => {
+    this._cardElement.remove();
+    this._cardElement = null;
   }
 }
 

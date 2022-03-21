@@ -50,10 +50,13 @@ cardFormValidator.enableValidation();
 
 
 function addCard (item) {
-  const card = new Card(item, '#card-template', openPopupImg);
-	const cardElement = card.generateCard();
-
+  const cardElement = createCard(item);
 	photoGrid.prepend(cardElement);
+}
+
+const createCard = (item) => {
+  const card = new Card(item, '#card-template', openPopupImg);
+	return card.generateCard();
 }
 
 // ------ OPEN POPUP FORMS ------
@@ -62,12 +65,14 @@ function openPopupProfile () {
   openPopup(popupProfile);
   profileNewName.value = profileOldName.textContent;
   profileNewDef.value = profileOldDef.textContent;
+  profileFormValidator.resetValidation();
 }
 
 function openPopupCard () {
   openPopup(popupAddCards);
   newCardName.value = null;
   newCardSource.value = null;
+  cardFormValidator.resetValidation();
 }
 
 const openPopupImg = (link, name) => {
@@ -133,9 +138,7 @@ initialCards.forEach(addCard);
 
 buttonChangeProfile.addEventListener('click', () => {
   openPopupProfile();
-  profileFormValidator.hideInputError(profileNewName, 'fillbox__text_type_error');
-  profileFormValidator.hideInputError(profileNewDef, 'fillbox__text_type_error');
-  buttonSaveProfile.disabled = false;
+  profileFormValidator.resetValidation();
 });
 
 buttonClosePopupProfile.addEventListener('click', () => {
@@ -148,9 +151,7 @@ formProfile.addEventListener('submit', savePopupProfile);
 
 buttonAddCardOpen.addEventListener('click', () => {
   openPopupCard();
-  cardFormValidator.hideInputError(newCardName, 'fillbox__text_type_error');
-  cardFormValidator.hideInputError(newCardSource, 'fillbox__text_type_error');
-  buttonSaveCard.disabled = true;
+  cardFormValidator.resetValidation();
 });
 
 buttonAddCardClose.addEventListener('click', () => {
