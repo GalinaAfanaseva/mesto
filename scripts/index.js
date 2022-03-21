@@ -1,3 +1,6 @@
+import { initialCards } from './initialCards.js';
+import { Card } from './Card.js';
+import { FormValidator } from './FormValidator.js';
 
 const popupProfile = document.querySelector('.popup_profile');
 const buttonChangeProfile = document.querySelector('.profile-info__edit-button');
@@ -24,49 +27,34 @@ const buttonClosePopupImg = popupImg.querySelector('.popup__close');
 
 const photoGrid = document.querySelector('.photo-grid');
 
+// ------ VALIDATING ------
+
+const profileFormValidator = new FormValidator({
+  inputSelector: '.fillbox__text',
+  submitButtonSelector: '.fillbox__submit',
+  inputErrorClass: 'fillbox__text_type_error'
+}, formProfile);
+
+const cardFormValidator = new FormValidator({
+  inputSelector: '.fillbox__text',
+  submitButtonSelector: '.fillbox__submit',
+  inputErrorClass: 'fillbox__text_type_error'
+}, formCard);
+
+profileFormValidator.enableValidation();
+cardFormValidator.enableValidation();
+
 // ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 // ^^^^^^^^^^^^^^^^ FUNCTIONS ^^^^^^^^^^^^^^^
 // ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-// ------ ADDING NEW CARD WITH TEMPLATE ------
-
-function newCard (item) {
-  const cardTemplate = document.querySelector('#card-template').content.cloneNode(true);
-  const cardTemplateImage = cardTemplate.querySelector('.photo-card__img');
-  cardTemplate.querySelector('.photo-card__name').textContent = item.name;
-  cardTemplateImage.src = item.link;
-  cardTemplateImage.alt = item.name;
-  // ------ LIKE ------
-  cardTemplate.querySelector('.photo-card__like-button').addEventListener('click', likeCard);
-  // ------ CARD DELETE ------
-  cardTemplate.querySelector('.photo-card__delete').addEventListener('click', deleteCard);
-  // ------ PIC OPEN ------
-  cardTemplateImage.addEventListener('click', () => {
-    openImg(item);
-  });
-  return cardTemplate;
-}
 
 function addCard (item) {
-  photoGrid.prepend(newCard(item));
+  const card = new Card(item, '#card-template', openPopupImg);
+	const cardElement = card.generateCard();
+
+	photoGrid.prepend(cardElement);
 }
-
-// ------ BIG PICTURE OPENING ------
-function openImg (item) {
-  openPopupImg(item);
-}
-
-// ------ CARD DELETING ------
-
-function deleteCard (event) {
-  event.target.closest('.photo-card').remove();
-}
-
-// ------ LIKE ------
-
-function likeCard (event) {
-  event.target.classList.toggle('photo-card__like-button_active');;
-};
 
 // ------ OPEN POPUP FORMS ------
 
@@ -82,11 +70,11 @@ function openPopupCard () {
   newCardSource.value = null;
 }
 
-function openPopupImg (item) {
+const openPopupImg = (link, name) => {
   openPopup(popupImg);
-  poppingImage.src = item.link;
-  poppingImage.alt = item.name;
-  poppingImageCaption.textContent = item.name;
+  poppingImage.src = link;
+  poppingImage.alt = name;
+  poppingImageCaption.textContent = name;
 }
 
 // ------ ADD/REMOVE 'popup_opened' ------
@@ -145,8 +133,8 @@ initialCards.forEach(addCard);
 
 buttonChangeProfile.addEventListener('click', () => {
   openPopupProfile();
-  hideInputError(formProfile, profileNewName, 'fillbox__text_type_error');
-  hideInputError(formProfile, profileNewDef, 'fillbox__text_type_error');
+  profileFormValidator.hideInputError(profileNewName, 'fillbox__text_type_error');
+  profileFormValidator.hideInputError(profileNewDef, 'fillbox__text_type_error');
   buttonSaveProfile.disabled = false;
 });
 
@@ -160,8 +148,8 @@ formProfile.addEventListener('submit', savePopupProfile);
 
 buttonAddCardOpen.addEventListener('click', () => {
   openPopupCard();
-  hideInputError(formCard, newCardName, 'fillbox__text_type_error');
-  hideInputError(formCard, newCardSource, 'fillbox__text_type_error');
+  cardFormValidator.hideInputError(newCardName, 'fillbox__text_type_error');
+  cardFormValidator.hideInputError(newCardSource, 'fillbox__text_type_error');
   buttonSaveCard.disabled = true;
 });
 
