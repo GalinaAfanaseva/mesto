@@ -1,0 +1,22 @@
+{
+  "name": "mesto",
+  "version": "0.0.1",
+  "description": "learning",
+  "main": "index.js",
+  "scripts": {
+    "build": "webpack"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GalinaAfanaseva/mesto.git"
+  },
+  "author": "Galina Afanaseva",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/GalinaAfanaseva/mesto/issues"
+  },
+  "homepage": "https://github.com/GalinaAfanaseva/mesto#readme",
+  "devDependencies": {
+    "webpack-cli": "^4.9.2"
+  }
+}
