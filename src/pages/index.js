@@ -31,16 +31,16 @@ cardFormValidator.enableValidation();
 // ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 
-function addCard (item) {
-  const cardElement = createCard(item);
-	section.addItem(cardElement);
-}
+//function addCard (item) {
+//  const cardElement = createCard(item);
+//	section.addItem(cardElement);
+//}
 
 const createCard = (item) => {
   const card = new Card(item, '#card-template', () => {
     imagePopup.open(item.link, item.name);
   });
-	return card.generateCard();
+  section.addItem(card.generateCard());
 }
 
 function savePopupProfile (data) {
@@ -69,11 +69,11 @@ buttonAddCardOpen.addEventListener('click', () => {
 // ------ SAVE NEW CARD ------
 
 const savePopupCard = (data) => {
-  const newCard = createCard({
+  createCard({
     name: data.place,
     link: data.source
   });
-  section.addItem(newCard);
+  //section.addItem(newCard);
 
   addCardPopup.close();
 } 
@@ -83,7 +83,7 @@ const savePopupCard = (data) => {
 const imagePopup = new PopupWithImage('.popup_img');
 const editProfilePopup = new PopupWithForm('.popup_profile', savePopupProfile);
 const addCardPopup = new PopupWithForm('.popup_add-cards', savePopupCard);
-const section = new Section({ items: initialCards, renderer: addCard}, '.photo-grid');
+const section = new Section({ items: initialCards, renderer: createCard}, '.photo-grid');
 const userInfo = new UserInfo({ profileNameSelector: '.profile-info__name', profileInfoSelector: '.profile-info__def' });
 
 imagePopup.setEventListeners();
