@@ -6,14 +6,14 @@ export class UserInfo {
 
   getUserInfo() {
     return {
-      name: this._userName,
-      description: this._userInfo
+      name: this._userName.textContent,
+      description: this._userInfo.textContent
     };
   }
 
-  setUserInfo(Name, Info) {
-    this._userName.textContent = Name;
-    this._userInfo.textContent = Info;
+  setUserInfo(name, info) {
+    this._userName.textContent = name;
+    this._userInfo.textContent = info;
     //profileFormValidator.resetValidation();
   }
 }
