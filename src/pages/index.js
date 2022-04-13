@@ -47,7 +47,7 @@ const createCard = (item) => {
 function savePopupProfile (data) {
   const { name, description } = data;
   userInfo.setUserInfo(name, description);
-  api.sendUserInfo(name, description);
+  api.editUserInfo(name, description);
   editProfilePopup.close();
 } 
 
@@ -76,7 +76,10 @@ const savePopupCard = (data) => {
     link: data.source
   });
   //section.addItem(newCard);
-
+  api.sendNewCard(data.place, data.source)
+    .then(res => {
+      console.log(res);
+    });
   addCardPopup.close();
 } 
 

@@ -34,12 +34,32 @@ export class Api {
     });
   }
 
-  sendUserInfo(name, info) {
+  editUserInfo(name, info) {
     return fetch(`${this._baseUrl}/users/me`, {
       method: 'PATCH',
       body: JSON.stringify({
         name: name,
         about: info
+      }),
+      headers: this._headers
+    })
+    .then(res => {
+      if (res.ok) {
+        return res.json();
+      } 
+      return Promise.reject(`Ошибка: ${res.status}`);
+    })
+    .catch(err => {
+      console.log(err);
+    });
+  }
+
+  sendNewCard(name, link) {
+    return fetch(`${this._baseUrl}/cards`, {
+      method: 'POST',
+      body: JSON.stringify({
+        name: name,
+        link: link
       }),
       headers: this._headers
     })
