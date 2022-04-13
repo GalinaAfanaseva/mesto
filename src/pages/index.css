@@ -23,6 +23,9 @@
 @import url(../blocks/profile-info/__edit-button/profile-info__edit-button.css);
 @import url(../blocks/photo-card/__like-button/photo-card__like-button.css);
 @import url(../blocks/photo-card/__like-button/_active/photo-card__like-button_active.css);
+@import url(../blocks/photo-card/__likes/photo-card__likes.css);
+@import url(../blocks/photo-card/__like-count/photo-card__like-count.css);
+@import url(../blocks/photo-card/__like-count/_visible/photo-card__like-count_visible.css);
 @import url(../blocks/popup/popup.css);
 @import url(../blocks/fillbox/fillbox.css);
 @import url(../blocks/fillbox/__title/fillbox__title.css);

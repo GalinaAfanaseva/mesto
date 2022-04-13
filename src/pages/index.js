@@ -32,11 +32,6 @@ cardFormValidator.enableValidation();
 // ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 
-//function addCard (item) {
-//  const cardElement = createCard(item);
-//	section.addItem(cardElement);
-//}
-
 const createCard = (item) => {
   const card = new Card(item, '#card-template', () => {
     imagePopup.open(item.link, item.name);
@@ -73,7 +68,8 @@ buttonAddCardOpen.addEventListener('click', () => {
 const savePopupCard = (data) => {
   createCard({
     name: data.place,
-    link: data.source
+    link: data.source,
+    likes: data.likes
   });
   //section.addItem(newCard);
   api.sendNewCard(data.place, data.source)
