@@ -57,7 +57,7 @@
 /*!***********************************************************************************************************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./node_modules/postcss-loader/dist/cjs.js!./src/blocks/profile-info/__avatar/profile-info__avatar.css ***!
   \***********************************************************************************************************************************************************************************/
-.profile-info__avatar{border-radius:50%;display:block;height:120px;margin-right:30px;width:120px}@media screen and (max-width:650px){.profile-info__avatar{margin-bottom:26px;margin-right:0}}
+.profile-info__avatar{border-radius:50%;display:block;height:120px;margin-right:30px;-o-object-fit:cover;object-fit:cover;width:120px}@media screen and (max-width:650px){.profile-info__avatar{margin-bottom:26px;margin-right:0}}
 /*!*******************************************************************************************************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./node_modules/postcss-loader/dist/cjs.js!./src/blocks/profile-info/__name/profile-info__name.css ***!
   \*******************************************************************************************************************************************************************************/
