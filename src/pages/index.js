@@ -47,6 +47,7 @@ const createCard = (item) => {
 function savePopupProfile (data) {
   const { name, description } = data;
   userInfo.setUserInfo(name, description);
+  api.sendUserInfo(name, description);
   editProfilePopup.close();
 } 
 
@@ -100,3 +101,4 @@ api.getUserInfo()
   .then(user => {
     userInfo.setUserInfo(user.name, user.about);
   });
+
