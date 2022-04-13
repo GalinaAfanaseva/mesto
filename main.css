@@ -98,6 +98,18 @@
   !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./node_modules/postcss-loader/dist/cjs.js!./src/blocks/photo-card/__like-button/_active/photo-card__like-button_active.css ***!
   \********************************************************************************************************************************************************************************************************/
 .photo-card__like-button_active{background-image:url(fe17a515669479b1e649.svg);height:19px;position:relative;width:22px}
+/*!*****************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./node_modules/postcss-loader/dist/cjs.js!./src/blocks/photo-card/__likes/photo-card__likes.css ***!
+  \*****************************************************************************************************************************************************************************/
+.photo-card__likes{align-items:center;display:flex;flex-direction:column}
+/*!***************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./node_modules/postcss-loader/dist/cjs.js!./src/blocks/photo-card/__like-count/photo-card__like-count.css ***!
+  \***************************************************************************************************************************************************************************************/
+.photo-card__like-count{color:#000;font-size:13px;font-style:normal;font-weight:400;height:13px;line-height:1.21;margin-top:3px;visibility:hidden}
+/*!********************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./node_modules/postcss-loader/dist/cjs.js!./src/blocks/photo-card/__like-count/_visible/photo-card__like-count_visible.css ***!
+  \********************************************************************************************************************************************************************************************************/
+.photo-card__like-count_visible{visibility:visible}
 /*!****************************************************************************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./node_modules/postcss-loader/dist/cjs.js!./src/blocks/popup/popup.css ***!
   \****************************************************************************************************************************************************/
