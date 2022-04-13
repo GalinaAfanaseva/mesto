@@ -1,10 +1,11 @@
-import { initialCards, settings } from '../utils/constants.js';
+import { initialCards, settings, optionsApi } from '../utils/constants.js';
 import { Card } from '../components/Card.js';
 import { FormValidator } from '../components/FormValidator.js';
 import { Section } from '../components/Section.js';
 import { PopupWithImage } from '../components/PopupWithImage.js';
 import { PopupWithForm } from '../components/PopupWithForm.js';
 import { UserInfo } from '../components/UserInfo.js';
+import { Api } from '../components/Api.js';
 
 import '../pages/index.css';
 
@@ -83,11 +84,15 @@ const savePopupCard = (data) => {
 const imagePopup = new PopupWithImage('.popup_img');
 const editProfilePopup = new PopupWithForm('.popup_profile', savePopupProfile);
 const addCardPopup = new PopupWithForm('.popup_add-cards', savePopupCard);
-const section = new Section({ items: initialCards, renderer: createCard}, '.photo-grid');
+const section = new Section(createCard, '.photo-grid');
 const userInfo = new UserInfo({ profileNameSelector: '.profile-info__name', profileInfoSelector: '.profile-info__def' });
+const api = new Api(optionsApi);
 
 imagePopup.setEventListeners();
 editProfilePopup.setEventListeners();
 addCardPopup.setEventListeners();
-section.renderItems();
+api.getInitialCards()
+  .then(cards => {
+    section.renderItems(cards);
+  });
 
