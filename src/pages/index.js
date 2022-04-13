@@ -96,3 +96,7 @@ api.getInitialCards()
     section.renderItems(cards);
   });
 
+api.getUserInfo()
+  .then(user => {
+    userInfo.setUserInfo(user.name, user.about);
+  });
