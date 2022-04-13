@@ -1,7 +1,8 @@
 export class UserInfo {
-  constructor({ profileNameSelector, profileInfoSelector }) {
+  constructor({ profileNameSelector, profileInfoSelector, profileAvatarSelector }) {
     this._userName = document.querySelector(profileNameSelector);
     this._userInfo = document.querySelector(profileInfoSelector);
+    this._userAvatar = document.querySelector(profileAvatarSelector);
   }
 
   getUserInfo() {
@@ -11,9 +12,10 @@ export class UserInfo {
     };
   }
 
-  setUserInfo(name, info) {
+  setUserInfo(name, info, avatar) {
     this._userName.textContent = name;
     this._userInfo.textContent = info;
+    this._userAvatar.src = avatar;
     //profileFormValidator.resetValidation();
   }
 }
