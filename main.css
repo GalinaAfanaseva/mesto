@@ -117,11 +117,11 @@
 /*!********************************************************************************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./node_modules/postcss-loader/dist/cjs.js!./src/blocks/fillbox/fillbox.css ***!
   \********************************************************************************************************************************************************/
-.fillbox{background-color:#fff;border-radius:10px;display:flex;flex-direction:column;justify-content:space-between;min-height:259px;padding:34px 36px 37px;width:358px}@media screen and (max-width:650px){.fillbox{min-height:272px;padding:25px 22px;width:238px}}
+.fillbox{background-color:#fff;border-radius:10px;display:flex;flex-direction:column;justify-content:space-between;min-height:110px;padding:34px 36px 37px;width:358px}@media screen and (max-width:650px){.fillbox{min-height:110px;padding:25px 22px;width:238px}}
 /*!***********************************************************************************************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./node_modules/postcss-loader/dist/cjs.js!./src/blocks/fillbox/__title/fillbox__title.css ***!
   \***********************************************************************************************************************************************************************/
-.fillbox__title{color:#000;font-size:24px;font-style:normal;font-weight:900;line-height:1.21;margin:0}@media screen and (max-width:650px){.fillbox__title{font-size:18px}}
+.fillbox__title{color:#000;font-size:24px;font-style:normal;font-weight:900;line-height:1.21;margin:0 0 41px}@media screen and (max-width:650px){.fillbox__title{font-size:18px}}
 /*!*************************************************************************************************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./node_modules/postcss-loader/dist/cjs.js!./src/blocks/fillbox/__submit/fillbox__submit.css ***!
   \*************************************************************************************************************************************************************************/

@@ -54,7 +54,7 @@
         </div>
       </div>
       <!-- NEW CARD ADDING FORM POPUP -->
-      <div class="popup popup_add-cards">
+      <div class="popup popup_add-cards ">
         <div class="popup__container">
           <div class="fillbox">
             <h2 class="fillbox__title">Новое место</h2>
@@ -77,6 +77,38 @@
         <div class="popup__img-container">
           <img class="popup__img-big" alt="Увеличенное изображение">
           <figcaption class="popup__img-caption"></figcaption>
+          <button class="popup__close" type="button">
+          </button>
+        </div>
+      </div>
+      <!-- Change avatar FORM POPUP -->
+      <div class="popup popup_change-avatar ">
+        <div class="popup__container">
+          <div class="fillbox">
+            <h2 class="fillbox__title">Обновить аватар</h2>
+            <form name="add-card" class="fillbox__form fillbox__form-card" novalidate>
+              <fieldset class="fillbox__items">
+                <input type="url" name="avatar" id="profile-img" class="fillbox__text fillbox__text_profile_ava" placeholder="Ссылка на картинку" required>
+                <span class="fillbox__error-message card-img-error"></span>
+                <input type="submit" class="fillbox__submit" value="Сохранить">
+              </fieldset>
+            </form>
+          </div>
+          <button class="popup__close" type="button">
+          </button>
+        </div>
+      </div>
+      <!-- Delete card question FORM POPUP -->
+      <div class="popup popup_delete-card ">
+        <div class="popup__container">
+          <div class="fillbox">
+            <h2 class="fillbox__title">Вы уверены?</h2>
+            <form name="add-card" class="fillbox__form fillbox__form-card" novalidate>
+              <fieldset class="fillbox__items">
+                <input type="submit" class="fillbox__submit" value="Да">
+              </fieldset>
+            </form>
+          </div>
           <button class="popup__close" type="button">
           </button>
         </div>
