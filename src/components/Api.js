@@ -104,4 +104,20 @@ export class Api {
       console.log(err);
     });
   }
+
+  editUserAvatar(link) {
+    return fetch(`${this._baseUrl}/users/me/avatar`, {
+      method: 'PATCH',
+      body: JSON.stringify({
+        avatar: link
+      }),
+      headers: this._headers
+    })
+    .then(res => {
+      return this._getResponseData(res);
+    })
+    .catch(err => {
+      console.log(err);
+    });
+  }
 }
