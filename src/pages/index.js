@@ -1,4 +1,4 @@
-import { initialCards, settings, optionsApi } from '../utils/constants.js';
+import { settings, optionsApi } from '../utils/constants.js';
 import { Card } from '../components/Card.js';
 import { FormValidator } from '../components/FormValidator.js';
 import { Section } from '../components/Section.js';
@@ -16,7 +16,8 @@ const profileName = formProfile.querySelector('.fillbox__text_profile_name');
 const profileDef = formProfile.querySelector('.fillbox__text_profile_def');
 const buttonAddCardOpen = document.querySelector('.profile__add-card-button');
 const formCard = document.querySelector('.fillbox__form-card');
-const photoGrid = document.querySelector('.photo-grid');
+
+let myUserId;
 
 // ------ VALIDATING ------
 
@@ -33,9 +34,16 @@ cardFormValidator.enableValidation();
 
 
 const createCard = (item) => {
-  const card = new Card(item, '#card-template', () => {
-    imagePopup.open(item.link, item.name);
-  });
+  const card = new Card(
+    item, 
+    '#card-template', 
+    () => {
+      imagePopup.open(item.link, item.name);
+    },
+    () => {
+      api.addLike(item._id)
+    }
+  );
   section.addItem(card.generateCard());
 }
 
@@ -69,35 +77,35 @@ const savePopupCard = (data) => {
   createCard({
     name: data.place,
     link: data.source,
-    likes: data.likes
+    likes: [],
+    userId: myUserId,
+    ownerId: data.owner._id
   });
   //section.addItem(newCard);
-  api.sendNewCard(data.place, data.source)
-    .then(res => {
-      console.log(res);
-    });
+  api.sendNewCard(data.place, data.source);
   addCardPopup.close();
 } 
 
 // ------------
 
+const api = new Api(optionsApi);
 const imagePopup = new PopupWithImage('.popup_img');
 const editProfilePopup = new PopupWithForm('.popup_profile', savePopupProfile);
 const addCardPopup = new PopupWithForm('.popup_add-cards', savePopupCard);
 const section = new Section(createCard, '.photo-grid');
 const userInfo = new UserInfo({ profileNameSelector: '.profile-info__name', profileInfoSelector: '.profile-info__def', profileAvatarSelector: '.profile-info__avatar' });
-const api = new Api(optionsApi);
+
 
 imagePopup.setEventListeners();
 editProfilePopup.setEventListeners();
 addCardPopup.setEventListeners();
-api.getInitialCards()
-  .then(cards => {
+
+Promise.all([api.getProfile(), api.getInitialCards()])
+  .then(([user, cards]) => {
+    userInfo.setUserInfo(user.name, user.about, user.avatar);
+    myUserId = user._id;
+    console.log('user id new', myUserId);
     section.renderItems(cards);
   });
 
-api.getUserInfo()
-  .then(user => {
-    userInfo.setUserInfo(user.name, user.about, user.avatar);
-  });
-
+  console.log('user id new', myUserId);
