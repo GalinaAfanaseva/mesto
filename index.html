@@ -16,7 +16,7 @@
       <!-- PROFILE INFO -->
       <section class="profile">
         <div class="profile-info">
-          <img src="5170b4d25f3236a3a541.jpg" alt="Портрет Жак Ив Кусто в красной шапке" class="profile-info__avatar">
+          <button class="profile-info__avatar"></button>
           <div class="profile-info__text">
             <div class="profile-info__edit">
               <h1 class="profile-info__name"></h1>
@@ -86,10 +86,10 @@
         <div class="popup__container">
           <div class="fillbox">
             <h2 class="fillbox__title">Обновить аватар</h2>
-            <form name="add-card" class="fillbox__form fillbox__form-card" novalidate>
+            <form name="edit-avatar" class="fillbox__form fillbox__form-avatar" novalidate>
               <fieldset class="fillbox__items">
-                <input type="url" name="avatar" id="profile-img" class="fillbox__text fillbox__text_profile_ava" placeholder="Ссылка на картинку" required>
-                <span class="fillbox__error-message card-img-error"></span>
+                <input type="url" name="avatar" id="profile-img" class="fillbox__text fillbox__text_profile_img" placeholder="Ссылка на картинку" required>
+                <span class="fillbox__error-message profile-img-error"></span>
                 <input type="submit" class="fillbox__submit" value="Сохранить">
               </fieldset>
             </form>
@@ -103,7 +103,7 @@
         <div class="popup__container">
           <div class="fillbox">
             <h2 class="fillbox__title">Вы уверены?</h2>
-            <form name="add-card" class="fillbox__form fillbox__form-card" novalidate>
+            <form name="add-card" class="fillbox__form" novalidate>
               <fieldset class="fillbox__items">
                 <input type="submit" class="fillbox__submit" value="Да">
               </fieldset>
