@@ -15,6 +15,7 @@ const formProfile = popupProfile.querySelector('.fillbox__form-profile');
 const profileName = formProfile.querySelector('.fillbox__text_profile_name');
 const profileDef = formProfile.querySelector('.fillbox__text_profile_def');
 const buttonAddCardOpen = document.querySelector('.profile__add-card-button');
+
 const formCard = document.querySelector('.fillbox__form-card');
 
 let myUserId;
@@ -41,7 +42,17 @@ const createCard = (item) => {
       imagePopup.open(item.link, item.name);
     },
     () => {
-      api.addLike(item._id)
+      if (card.isLiked()) {
+        api.deleteLike(item._id)
+        .then(res => {
+          card.setLikes(res.likes)
+        })
+      } else {
+        api.addLike(item._id)
+        .then(res => {
+          card.setLikes(res.likes)
+        })
+      }
     }
   );
   section.addItem(card.generateCard());
@@ -86,12 +97,35 @@ const savePopupCard = (data) => {
   addCardPopup.close();
 } 
 
+// ------ Editing profile image ------
+
+buttonAddCardOpen.addEventListener('click', () => {
+  changeAvatarPopup.open();
+  cardFormValidator.resetValidation();
+});
+
+// ------ SAVE NEW profile image ------
+
+const savePopupAvatar = (data) => {
+  createCard({
+    name: data.place,
+    link: data.source,
+    likes: [],
+    userId: myUserId,
+    ownerId: data.owner._id
+  });
+  //section.addItem(newCard);
+  api.sendNewCard(data.place, data.source);
+  changeAvatarPopup.close();
+} 
+
 // ------------
 
 const api = new Api(optionsApi);
 const imagePopup = new PopupWithImage('.popup_img');
 const editProfilePopup = new PopupWithForm('.popup_profile', savePopupProfile);
 const addCardPopup = new PopupWithForm('.popup_add-cards', savePopupCard);
+const changeAvatarPopup = new PopupWithForm('.popup_change-avatar', () => console.log('change avatar'));
 const section = new Section(createCard, '.photo-grid');
 const userInfo = new UserInfo({ profileNameSelector: '.profile-info__name', profileInfoSelector: '.profile-info__def', profileAvatarSelector: '.profile-info__avatar' });
 
@@ -99,13 +133,17 @@ const userInfo = new UserInfo({ profileNameSelector: '.profile-info__name', prof
 imagePopup.setEventListeners();
 editProfilePopup.setEventListeners();
 addCardPopup.setEventListeners();
+changeAvatarPopup.setEventListeners();
 
 Promise.all([api.getProfile(), api.getInitialCards()])
   .then(([user, cards]) => {
     userInfo.setUserInfo(user.name, user.about, user.avatar);
     myUserId = user._id;
-    console.log('user id new', myUserId);
-    section.renderItems(cards);
+    const formattedData = cards.map(data => ({
+      ...data,
+      myUserId,
+    }));
+    section.renderItems(formattedData.reverse());
   });
 
-  console.log('user id new', myUserId);
+  
