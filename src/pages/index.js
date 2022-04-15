@@ -74,8 +74,10 @@ const createCard = (item) => {
 
 function savePopupProfile (data) {
   const { name, description } = data;
-  userInfo.setUserInfo(name, description);
-  api.editUserInfo(name, description);
+  api.editUserInfo(name, description)
+  .then(res => {
+    userInfo.setUserInfo(res.name, res.about, res.avatar);
+  });
   editProfilePopup.close();
 } 
 
@@ -123,14 +125,9 @@ buttonChangeAvatar.addEventListener('click', () => {
 // ------ SAVE NEW profile image ------
 
 const savePopupAvatar = (data) => {
-  createCard({
-    name: data.place,
-    link: data.source,
-    likes: [],
-    userId: myUserId,
-    ownerId: data.owner._id
-  });
-  api.changeAvatarPopup(link);
+  const link = data.avatar;
+  buttonChangeAvatar.style.backgroundImage = `url('${link}')`;
+  api.editUserAvatar(link);
   changeAvatarPopup.close();
 } 
 
@@ -141,7 +138,7 @@ const imagePopup = new PopupWithImage('.popup_img');
 const editProfilePopup = new PopupWithForm('.popup_profile', savePopupProfile);
 const addCardPopup = new PopupWithForm('.popup_add-cards', savePopupCard);
 const deleteCardPopup = new PopupWithForm('.popup_delete-card');
-const changeAvatarPopup = new PopupWithForm('.popup_change-avatar', () => console.log('yes,changing avatar'));
+const changeAvatarPopup = new PopupWithForm('.popup_change-avatar', savePopupAvatar);
 const section = new Section(createCard, '.photo-grid');
 const userInfo = new UserInfo({ profileNameSelector: '.profile-info__name', profileInfoSelector: '.profile-info__def', profileAvatarSelector: '.profile-info__avatar' });
 

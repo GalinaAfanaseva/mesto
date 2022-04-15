@@ -15,8 +15,7 @@ export class UserInfo {
   setUserInfo(name, info, avatar) {
     this._userName.textContent = name;
     this._userInfo.textContent = info;
-    this._userAvatar.src = avatar;
-    //profileFormValidator.resetValidation();
+    this._userAvatar.style.backgroundImage = `url('${avatar}')`;
   }
 }
 
