@@ -1,13 +1,15 @@
 export class Card {
-  constructor(data, cardTemplateselector, handleCardClick, handleLikeClick) {
+  constructor(data, cardTemplateselector, handleCardClick, handleLikeClick, handleCardDeleteClick) {
     this._name = data.name;
     this._link = data.link;
     this._likesArray = data.likes;
-    this._ownerId = data.ownerId;
+    this._ownerId = data.owner._id;
     this._userId = data.myUserId;
+    this._cardId = data._id;
     this._cardTemplateSelector = cardTemplateselector;
     this._handleCardClick = handleCardClick;
     this._handleLikeClick = handleLikeClick;
+    this._handleCardDeleteClick = handleCardDeleteClick;
   }
 
   _getTemplate() {
@@ -55,9 +57,10 @@ export class Card {
   _setEventListeners() {
     this._likeButton.addEventListener('click', () => {
       this._handleLikeClick();
-      //this._likeCard();
     });
-    this._deleteButton.addEventListener('click', this._deleteCard);
+    this._deleteButton.addEventListener('click', () => {
+      this._handleCardDeleteClick(this._cardId);
+    });
     this._cardImage.addEventListener('click', () => this._handleCardClick(this._link, this._name));
   }
 
@@ -72,22 +75,15 @@ export class Card {
     this._fillCard();
 
     this._setEventListeners();
-    
-    return this._element;
+
+    if (this._ownerId !== this._userId) {
+      this._deleteButton.style.display = 'none';
+    }
+
+    return this._element; 
   }
 
-  _likeCard = () => {
-    this._likeButton.classList.toggle('photo-card__like-button_active'); /*
-    this._likesArray.forEach((likeOwner) => {
-      if (likeOwner._id = '2a75bae67c5a85a3b4a4d09b') {
-        this._likesAmount = this._likesAmount - 1;
-      } else {
-        this._likesAmount = this._likesAmount + 1;
-      }
-    }); */
-  };
-
-  _deleteCard = () => {
+  deleteCard = () => {
     this._cardElement.remove();
     this._cardElement = null;
   }

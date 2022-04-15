@@ -53,6 +53,16 @@ const createCard = (item) => {
           card.setLikes(res.likes)
         })
       }
+    }, 
+    (id) => {
+      deleteCardPopup.open();
+      deleteCardPopup.changeSubmitHandler(() => {
+        api.deleteCard(id)
+        .then(res => {
+          deleteCardPopup.close();
+          card.deleteCard();
+        });
+      });
     }
   );
   section.addItem(card.generateCard());
@@ -89,16 +99,18 @@ const savePopupCard = (data) => {
     name: data.place,
     link: data.source,
     likes: [],
-    userId: myUserId,
-    ownerId: data.owner._id
+    _id: data._id,
+    owner: {
+      _id: myUserId
+    },
+    myUserId: myUserId
   });
-  //section.addItem(newCard);
   api.sendNewCard(data.place, data.source);
   addCardPopup.close();
 } 
 
 // ------ Editing profile image ------
-
+/*
 buttonAddCardOpen.addEventListener('click', () => {
   changeAvatarPopup.open();
   cardFormValidator.resetValidation();
@@ -118,14 +130,15 @@ const savePopupAvatar = (data) => {
   api.sendNewCard(data.place, data.source);
   changeAvatarPopup.close();
 } 
-
+*/
 // ------------
 
 const api = new Api(optionsApi);
 const imagePopup = new PopupWithImage('.popup_img');
 const editProfilePopup = new PopupWithForm('.popup_profile', savePopupProfile);
 const addCardPopup = new PopupWithForm('.popup_add-cards', savePopupCard);
-const changeAvatarPopup = new PopupWithForm('.popup_change-avatar', () => console.log('change avatar'));
+const deleteCardPopup = new PopupWithForm('.popup_delete-card');
+//const changeAvatarPopup = new PopupWithForm('.popup_change-avatar', () => console.log('change avatar'));
 const section = new Section(createCard, '.photo-grid');
 const userInfo = new UserInfo({ profileNameSelector: '.profile-info__name', profileInfoSelector: '.profile-info__def', profileAvatarSelector: '.profile-info__avatar' });
 
@@ -133,7 +146,8 @@ const userInfo = new UserInfo({ profileNameSelector: '.profile-info__name', prof
 imagePopup.setEventListeners();
 editProfilePopup.setEventListeners();
 addCardPopup.setEventListeners();
-changeAvatarPopup.setEventListeners();
+deleteCardPopup.setEventListeners();
+//changeAvatarPopup.setEventListeners();
 
 Promise.all([api.getProfile(), api.getInitialCards()])
   .then(([user, cards]) => {
