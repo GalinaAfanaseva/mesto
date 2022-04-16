@@ -103,19 +103,14 @@ buttonAddCardOpen.addEventListener('click', () => {
 // ------ SAVE NEW CARD ------
 
 const savePopupCard = (data) => {
-  createCard({
-    name: data.place,
-    link: data.source,
-    likes: [],
-    _id: data._id,
-    owner: {
-      _id: myUserId
-    },
-    myUserId: myUserId
-  });
+  
   addCardPopup.setButtonText('Сохранение...');
   api.sendNewCard(data.place, data.source)
-  .then(() => addCardPopup.setButtonText('Сохранить'));
+  .then((res) => {
+    addCardPopup.setButtonText('Сохранить');
+    res.myUserId = myUserId;
+    createCard(res);
+  });
   addCardPopup.close();
 } 
 

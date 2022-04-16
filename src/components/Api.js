@@ -4,120 +4,78 @@ export class Api {
     this._headers = headers;
   }
 
-  _getResponseData(res) {
-    return res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`);
-  }
-
-  getInitialCards() {
-    return fetch(`${this._baseUrl}/cards`, {
-      headers: this._headers
-    })
+  _customFetch(url, options) {
+    return fetch(url, options)
     .then(res => { 
-      return this._getResponseData(res);
+      return res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`);
     })
     .catch(err => {
       console.log(err);
+    });
+  }
+
+  getInitialCards() {
+    return this._customFetch(`${this._baseUrl}/cards`, {
+         headers: this._headers
     });
   }
 
   getProfile() {
-    return fetch(`${this._baseUrl}/users/me`, {
+    return this._customFetch(`${this._baseUrl}/users/me`, {
       headers: this._headers
-    })
-    .then(res => {
-      return this._getResponseData(res);
-    })
-    .catch(err => {
-      console.log(err);
     });
   }
 
   editUserInfo(name, info) {
-    return fetch(`${this._baseUrl}/users/me`, {
+    return this._customFetch(`${this._baseUrl}/users/me`, {
       method: 'PATCH',
       body: JSON.stringify({
         name: name,
         about: info
       }),
       headers: this._headers
-    })
-    .then(res => {
-      return this._getResponseData(res);
-    })
-    .catch(err => {
-      console.log(err);
     });
   }
 
-  sendNewCard(name, link, likes) {
-    return fetch(`${this._baseUrl}/cards`, {
+  sendNewCard(name, link) {
+    return this._customFetch(`${this._baseUrl}/cards`, {
       method: 'POST',
       body: JSON.stringify({
         name: name,
         link: link
       }),
       headers: this._headers
-    })
-    .then(res => {
-      return this._getResponseData(res);
-    })
-    .catch(err => {
-      console.log(err);
     });
   }
 
   addLike(cardId) {
-    return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
+    return this._customFetch(`${this._baseUrl}/cards/${cardId}/likes`, {
       method: 'PUT',
       headers: this._headers
-    })
-    .then(res => {
-      return this._getResponseData(res);
-    })
-    .catch(err => {
-      console.log(err);
     });
   }
 
   deleteLike(cardId) {
-    return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
+    return this._customFetch(`${this._baseUrl}/cards/${cardId}/likes`, {
       method: 'DELETE',
       headers: this._headers
-    })
-    .then(res => {
-      return this._getResponseData(res);
-    })
-    .catch(err => {
-      console.log(err);
     });
   }
 
   deleteCard(cardId) {
-    return fetch(`${this._baseUrl}/cards/${cardId}`, {
+    return this._customFetch(`${this._baseUrl}/cards/${cardId}`, {
       method: 'DELETE',
       headers: this._headers
-    })
-    .then(res => {
-      return this._getResponseData(res);
-    })
-    .catch(err => {
-      console.log(err);
     });
   }
 
   editUserAvatar(link) {
-    return fetch(`${this._baseUrl}/users/me/avatar`, {
+    return this._customFetch(`${this._baseUrl}/users/me/avatar`, {
       method: 'PATCH',
       body: JSON.stringify({
         avatar: link
       }),
       headers: this._headers
-    })
-    .then(res => {
-      return this._getResponseData(res);
-    })
-    .catch(err => {
-      console.log(err);
     });
   }
 }
