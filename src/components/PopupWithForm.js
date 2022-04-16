@@ -33,4 +33,9 @@ export class PopupWithForm extends Popup {
     super.close();
     this._form.reset();
   }
+
+  setButtonText(text) {
+    this._button = this._form.querySelector('.fillbox__submit');
+    this._button.value = text;
+  }
 }

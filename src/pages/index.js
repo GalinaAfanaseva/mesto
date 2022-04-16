@@ -63,8 +63,8 @@ const createCard = (item) => {
       deleteCardPopup.changeSubmitHandler(() => {
         api.deleteCard(id)
         .then(res => {
-          deleteCardPopup.close();
           card.deleteCard();
+          deleteCardPopup.close();
         });
       });
     }
@@ -74,9 +74,11 @@ const createCard = (item) => {
 
 function savePopupProfile (data) {
   const { name, description } = data;
+  editProfilePopup.setButtonText('Сохранение...');
   api.editUserInfo(name, description)
   .then(res => {
     userInfo.setUserInfo(res.name, res.about, res.avatar);
+    editProfilePopup.setButtonText('Сохранить');
   });
   editProfilePopup.close();
 } 
@@ -111,7 +113,9 @@ const savePopupCard = (data) => {
     },
     myUserId: myUserId
   });
-  api.sendNewCard(data.place, data.source);
+  addCardPopup.setButtonText('Сохранение...');
+  api.sendNewCard(data.place, data.source)
+  .then(() => addCardPopup.setButtonText('Сохранить'));
   addCardPopup.close();
 } 
 
@@ -127,7 +131,9 @@ buttonChangeAvatar.addEventListener('click', () => {
 const savePopupAvatar = (data) => {
   const link = data.avatar;
   buttonChangeAvatar.style.backgroundImage = `url('${link}')`;
-  api.editUserAvatar(link);
+  changeAvatarPopup.setButtonText('Сохранение...');
+  api.editUserAvatar(link)
+  .then(() => changeAvatarPopup.setButtonText('Сохранить'));
   changeAvatarPopup.close();
 } 
 
