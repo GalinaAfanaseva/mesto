@@ -13,6 +13,8 @@
 - БЭМ-методология
 - Figma
 - ООП
+- Webpack
+- AJAX
 
 **Figma**
 
