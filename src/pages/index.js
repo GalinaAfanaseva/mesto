@@ -51,10 +51,16 @@ const createCard = (item) => {
         .then(res => {
           card.setLikes(res.likes)
         })
+        .catch(err => {
+          console.log(err);
+        })
       } else {
         api.addLike(item._id)
         .then(res => {
           card.setLikes(res.likes)
+        })
+        .catch(err => {
+          console.log(err);
         })
       }
     }, 
@@ -65,6 +71,9 @@ const createCard = (item) => {
         .then(res => {
           card.deleteCard();
           deleteCardPopup.close();
+        })
+        .catch(err => {
+          console.log(err);
         });
       });
     }
@@ -78,9 +87,12 @@ function savePopupProfile (data) {
   api.editUserInfo(name, description)
   .then(res => {
     userInfo.setUserInfo(res.name, res.about, res.avatar);
-    editProfilePopup.setButtonText('Сохранить');
-  });
-  editProfilePopup.close();
+    editProfilePopup.close();
+  })
+  .catch(err => {
+    console.log(err);
+  })
+  .finally(() => editProfilePopup.setButtonText('Сохранить'));
 } 
 
 // ------ EDITING PROFILE ------
@@ -107,11 +119,14 @@ const savePopupCard = (data) => {
   addCardPopup.setButtonText('Сохранение...');
   api.sendNewCard(data.place, data.source)
   .then((res) => {
-    addCardPopup.setButtonText('Сохранить');
     res.myUserId = myUserId;
     createCard(res);
-  });
-  addCardPopup.close();
+    addCardPopup.close();
+  })
+  .catch(err => {
+    console.log(err);
+  })
+  .finally(() => addCardPopup.setButtonText('Сохранить'));
 } 
 
 // ------ Editing profile image (avatar) ------
@@ -128,8 +143,11 @@ const savePopupAvatar = (data) => {
   buttonChangeAvatar.style.backgroundImage = `url('${link}')`;
   changeAvatarPopup.setButtonText('Сохранение...');
   api.editUserAvatar(link)
-  .then(() => changeAvatarPopup.setButtonText('Сохранить'));
-  changeAvatarPopup.close();
+  .then(() => changeAvatarPopup.close())
+  .catch(err => {
+    console.log(err);
+  })
+  .finally(() => changeAvatarPopup.setButtonText('Сохранить'));
 } 
 
 // ------------
@@ -159,6 +177,9 @@ Promise.all([api.getProfile(), api.getInitialCards()])
       myUserId,
     }));
     section.renderItems(formattedData.reverse());
+  })
+  .catch(err => {
+    console.log(err);
   });
 
   

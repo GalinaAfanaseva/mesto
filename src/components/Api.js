@@ -8,9 +8,6 @@ export class Api {
     return fetch(url, options)
     .then(res => { 
       return res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`);
-    })
-    .catch(err => {
-      console.log(err);
     });
   }
 
