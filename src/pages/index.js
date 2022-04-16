@@ -140,10 +140,12 @@ buttonChangeAvatar.addEventListener('click', () => {
 
 const savePopupAvatar = (data) => {
   const link = data.avatar;
-  buttonChangeAvatar.style.backgroundImage = `url('${link}')`;
   changeAvatarPopup.setButtonText('Сохранение...');
   api.editUserAvatar(link)
-  .then(() => changeAvatarPopup.close())
+  .then((res) => {
+    userInfo.setUserInfo(res.name, res.about, res.avatar);
+    changeAvatarPopup.close();
+  })
   .catch(err => {
     console.log(err);
   })

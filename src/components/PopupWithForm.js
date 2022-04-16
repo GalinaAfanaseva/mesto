@@ -6,6 +6,7 @@ export class PopupWithForm extends Popup {
     this._handleSubmit = handleSubmit;
     this._form = this._popup.querySelector('.fillbox__form');
     this._inputs = [...this._form.querySelectorAll('.fillbox__text')];
+    this._button = this._form.querySelector('.fillbox__submit');
   }
 
   _getInputValues() {
@@ -35,7 +36,6 @@ export class PopupWithForm extends Popup {
   }
 
   setButtonText(text) {
-    this._button = this._form.querySelector('.fillbox__submit');
     this._button.value = text;
   }
 }
